@@ -145,6 +145,15 @@ nav#menu {
     text-align: center;
 }
 
+@media (max-width: 500px) { /* For small screen decices */
+    *{
+      font-size: 12px; 
+    }
+    pre {
+     font-size: 11px;  
+    }
+}   
+
 table, th, td {
     border: 1px solid #000;
     border-collapse: collapse;

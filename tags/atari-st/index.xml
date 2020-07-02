@@ -5,10 +5,30 @@
     <link>http://www.b0nk.com/tags/atari-st/</link>
     <description>Recent content in Atari ST on b0nk&#39;s</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 30 Jun 2020 21:01:23 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jul 2020 15:48:48 +0200</lastBuildDate>
     
 	<atom:link href="http://www.b0nk.com/tags/atari-st/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[REL] Cruise for a Corpse - ES</title>
+      <link>http://www.b0nk.com/posts/cruise_for_a_corpse_es/</link>
+      <pubDate>Thu, 02 Jul 2020 15:48:48 +0200</pubDate>
+      
+      <guid>http://www.b0nk.com/posts/cruise_for_a_corpse_es/</guid>
+      <description>&lt;h2 id=&#34;cruise-for-a-corpse---es&#34;&gt;Cruise for a Corpse - ES&lt;/h2&gt;
+&lt;p&gt;El día ha llegado! Aquí encontraréis la &lt;em&gt;release&lt;/em&gt; de &lt;strong&gt;&lt;em&gt;Cruise for a Corpse&lt;/em&gt;&lt;/strong&gt; en español para Atari ST (no se ha dañado a ningún filólogo/traductor en el proceso).&lt;/p&gt;
+&lt;p&gt;Dejo disponibles dos &lt;em&gt;paquetes&lt;/em&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cruise_disk_es.zip&lt;/code&gt;: Instalación en disco duro. Crea un directorio en tu disco duro de Atari ST, descomprime este fichero dentro y a disfrutar.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cruise_floppy_es.zip&lt;/code&gt;: Distribución clásica en 5 imágenes de disco en formato &lt;code&gt;ST&lt;/code&gt;, listas para &lt;em&gt;Gotek&lt;/em&gt; y derivados. Incluso puedes grabar las imágenes en discos de verdad y deberían funcionar!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;En cada apartado tenéis los hashes correspondientes a cada fichero y los enlaces de descarga. El password para los ficheros es: &lt;code&gt;CadaverCrucero&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Cirugía Retro</title>

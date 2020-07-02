@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on b0nk&#39;s</title>
+    <link>http://www.b0nk.com/pages/</link>
+    <description>Recent content in Pages on b0nk&#39;s</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 02 Jul 2020 14:38:48 +0200</lastBuildDate>
+    
+	<atom:link href="http://www.b0nk.com/pages/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Cruise_for_a_corpse_es</title>
+      <link>http://www.b0nk.com/pages/cruise_for_a_corpse_es/</link>
+      <pubDate>Thu, 02 Jul 2020 14:38:48 +0200</pubDate>
+      
+      <guid>http://www.b0nk.com/pages/cruise_for_a_corpse_es/</guid>
+      <description>Cruise for a Corpse - ES El día ha llegado! Aquí encontraréis la release de Cruise for a Corpse en español para Atari ST (no se ha dañado a ningún filólogo/traductor en el proceso).
+Dejo disponibles dos paquetes:
+ cruise_disk_es.zip: Instalación en disco duro. Crea un directorio en tu disco duro de Atari ST, descomprime este fichero dentro y a disfrutar. cruise_floppy_es.zip: Distribución clásica en 5 imágenes de disco en formato ST, listas para Gotek y derivados.</description>
+    </item>
+    
+  </channel>
+</rss>

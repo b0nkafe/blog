@@ -3,37 +3,15 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://www.b0nk.com/tags/atari-st/</loc>
-    <lastmod>2020-06-30T21:01:23+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://www.b0nk.com/</loc>
-    <lastmod>2020-06-30T21:01:23+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.b0nk.com/posts/cirugia-retro/</loc>
-    <lastmod>2020-06-30T21:01:23+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.b0nk.com/posts/</loc>
-    <lastmod>2020-06-30T21:01:23+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.b0nk.com/tags/</loc>
-    <lastmod>2020-06-30T21:01:23+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.b0nk.com/posts/back2biz/</loc>
-    <lastmod>2020-06-30T20:35:51+02:00</lastmod>
   </url>
   
   <url>
     <loc>http://www.b0nk.com/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>http://www.b0nk.com/tags/</loc>
   </url>
   
 </urlset>

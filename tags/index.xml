@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on b0nk&#39;s</title>
+    <link>http://www.b0nk.com/tags/</link>
+    <description>Recent content in Tags on b0nk&#39;s</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 30 Jun 2020 21:01:23 +0200</lastBuildDate>
+    
+	<atom:link href="http://www.b0nk.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Atari ST</title>
+      <link>http://www.b0nk.com/tags/atari-st/</link>
+      <pubDate>Tue, 30 Jun 2020 21:01:23 +0200</pubDate>
+      
+      <guid>http://www.b0nk.com/tags/atari-st/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

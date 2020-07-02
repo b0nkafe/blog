@@ -1,0 +1,190 @@
+/* IE6/7/8 */
+@font-face {
+    font-family:Topaz;
+    src: url(/fonts/TopazPlus_a500_v1.0.eot);
+}
+
+@font-face {
+    font-family:MicroKnight;
+    src: url(/static/fonts/MicroKnightPlus_v1.0.eot);
+}
+
+/* FF3.5+/Safari/Opera10 */
+@font-face {
+    font-family:Topaz;
+    src: url(/fonts/TopazPlus_a500_v1.0.ttf) format("truetype");
+}
+
+@font-face {
+    font-family:MicroKnight;
+    src: url(/fonts/MicroKnightPlus_v1.0.ttf);
+}
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    max-width:900px;
+    margin:40px auto;
+    padding:0 10px;
+    font-size:16px/1.5;
+    font-family: Consolas, Monospace;
+    color:#0e0e0e;
+    background: #dfdfdf;
+}
+
+h1,h2,h3 {
+    line-height:1.2;
+    font-family: "MicroKnight"
+}
+
+h1, h1 a:link, h1 a:hover, h1 a:visited {
+    text-transform: uppercase;
+    font-size: 24pt;
+    width: 100%;
+}
+
+h2 {
+    text-transform: uppercase;   
+    width: 100%;
+    border-bottom: 1px solid #05a;
+    border-left: 4px solid #05a;
+    padding-left: 4px;
+    padding-top: 1px;
+    color: #0e0e0e;
+    margin-top: 50px;
+    /* color: #fff;
+    background: #000; */
+}
+
+h3 {
+    margin-top: 30px;
+    border-bottom: 1px solid #000;
+}
+
+hr { width:100%; height:0.2em; background: #000 }
+
+
+div {
+    text-align: justify;
+}
+
+div#moar {
+   font-size: 20px;
+   font-family: Topaz;
+   text-align: right;
+}
+
+pre code {
+    font-family: Topaz;
+    color: #fff; 
+    background:#05a;
+    line-height: 125%; 
+    font-weight: normal;
+    font-size: 120%;
+    display: block;
+    padding: 10px;
+}
+
+code {
+    font-weight: bold;
+    font-size: 120%;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    background: #fff;
+    color: #000;
+    padding: 1px;
+
+}
+
+a:link, :visited {
+    color: #05a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #000;
+    font-weight: bold;
+}
+
+pre { 
+    color: #FFFFFF; 
+    background:#000000; 
+    padding: 2px; 
+    white-space: pre-wrap;
+}
+
+pre#header {
+    color: #000;
+    background: #dfdfdf;
+    font-family: Topaz;
+    font-size: 12pt;
+    font-weight: bold;
+    /* line-height: 22px; */
+    text-align: center;
+    margin: 5px solid #000;
+}
+
+article{ 
+    padding:20px 0;
+}
+
+.center { display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+nav#menu {
+    margin-left:auto;
+    margin-right:auto;
+    width:100%;
+    display: block;
+    text-align: center;
+}
+
+table, th, td {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    padding: 7px;
+    margin: 30px;
+    vertical-align: middle;
+}
+
+table {
+    margin-right: auto;
+    margin-left: auto;
+    min-width: 50%;
+    max-width: 100%;
+}
+
+th {
+    padding: 10px;
+    letter-spacing: 2px;
+    color: #fff;
+    background: #3d3d3d;
+    font-family: "MicroKnight";
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+img {
+   border: 1px solid #000; 
+   padding: 3px;
+   background: #fff;
+   display: block;
+   /* margin-left: auto;
+   margin-right: auto; */
+   margin: 20px auto 20px auto;
+}

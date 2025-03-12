@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,7 @@ _88o,,od8P"888,_ _,88P888    Y88"888"88o,  ""
 	</pre>
 	<div style="float: right;"></div><br>
 	<nav id="menu">
-			<a href="/"><b>$HOME</b></a> | <a href="https://paypal.me/b0nkafe">iNVÍTAME A UN CAFÉ</a> | <a href="mailto:srm@b0nk.com">cONTACTO</a>
+			<a href="/"><b>$HOME</b></a> | <a href="mailto:srm AT b0nk DOT com">cONTACTO</a>
 			
 </header>
 
@@ -65,130 +65,130 @@ _88o,,od8P"888,_ _,88P888    Y88"888"88o,  ""
 <h2 id="aglutinando-versiones">Aglutinando versiones</h2>
 <p>El primer paso era conseguir las copias del juego que había disponibles. Me hice con las siguientes versiones:</p>
 <table>
-<thead>
-<tr>
-<th>Plataforma</th>
-<th>Idioma</th>
-<th>Crackeada</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Amiga</td>
-<td>Español</td>
-<td>Sí</td>
-</tr>
-<tr>
-<td>Atari ST</td>
-<td>Alemán</td>
-<td>Sí</td>
-</tr>
-<tr>
-<td>Atari ST</td>
-<td>Francés</td>
-<td>No</td>
-</tr>
-<tr>
-<td>PC VGA</td>
-<td>Español</td>
-<td>Sí</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Plataforma</th>
+          <th>Idioma</th>
+          <th>Crackeada</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Amiga</td>
+          <td>Español</td>
+          <td>Sí</td>
+      </tr>
+      <tr>
+          <td>Atari ST</td>
+          <td>Alemán</td>
+          <td>Sí</td>
+      </tr>
+      <tr>
+          <td>Atari ST</td>
+          <td>Francés</td>
+          <td>No</td>
+      </tr>
+      <tr>
+          <td>PC VGA</td>
+          <td>Español</td>
+          <td>Sí</td>
+      </tr>
+  </tbody>
 </table>
 <p>El hecho de que esté crackeada influirá en el repacking del juego, como veremos más adelante. Los cracks que he visto sobre el juego tocan tanto el ejecutable <code>CRUISE.PRG</code> como los ficheros de recursos que se usa durante el proceso de protección. Así pues, a efectos de preservación, consideraba imprescindible obtener una copia del juego intacta.</p>
 <p>El paso siguiente sería echar un vistazo a los ficheros del juego y empezar a &ldquo;abrir&rdquo; cosas, muahaha! :}</p>
 <h2 id="análisis-de-ficheros-y-unpacking">Análisis de ficheros y unpacking</h2>
 <p>Parece ser que el juego se distribuía en 5 floppies. El listado de ficheros es el siguiente:</p>
 <table>
-<thead>
-<tr>
-<th>Disco</th>
-<th>Fichero</th>
-<th>Descripción</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>A</td>
-<td><code>AUTO/CRUISE.PRG</code></td>
-<td>Ejecutable del juego, en el directorio <code>AUTO</code> para que arranque desde disco.</td>
-</tr>
-<tr>
-<td>A</td>
-<td><code>D1</code></td>
-<td>Volumen de recursos del primer disco.</td>
-</tr>
-<tr>
-<td>A</td>
-<td><code>INSTALL.PRG</code></td>
-<td>Ejecutable para configurar el audio del juego.</td>
-</tr>
-<tr>
-<td>A</td>
-<td><code>MIDI.OFF</code></td>
-<td>Fichero de configuración de sonido.</td>
-</tr>
-<tr>
-<td>A</td>
-<td><code>READ.ME</code></td>
-<td>Fichero <em>README</em> con instrucciones de instalación.</td>
-</tr>
-<tr>
-<td>A</td>
-<td><code>SYSTEM.FNT</code></td>
-<td>Fichero de la <a href="https://en.wikipedia.org/wiki/Computer_font#Bitmap_fonts">raster font</a> del juego.</td>
-</tr>
-<tr>
-<td>A</td>
-<td><code>VOL.1</code></td>
-<td>Fichero identificador del primer volumen de recursos.</td>
-</tr>
-<tr>
-<td>A</td>
-<td><code>VOL.CNF</code></td>
-<td>Volumen <em>maestro</em> de recursos. Tiene un índice general del contenido de todos los volúmenes.</td>
-</tr>
-<tr>
-<td>B</td>
-<td><code>D2</code></td>
-<td>Volumen de recursos del segundo disco.</td>
-</tr>
-<tr>
-<td>B</td>
-<td><code>VOL.2</code></td>
-<td>Identificador del segundo volumen de recursos.</td>
-</tr>
-<tr>
-<td>C</td>
-<td><code>D3</code></td>
-<td>Volumen de recursos del tercer disco.</td>
-</tr>
-<tr>
-<td>C</td>
-<td><code>VOL.3</code></td>
-<td>Identificador del tercer volumen de recursos.</td>
-</tr>
-<tr>
-<td>D</td>
-<td><code>D4</code></td>
-<td>Volumen de recursos del cuarto disco.</td>
-</tr>
-<tr>
-<td>D</td>
-<td><code>VOL.4</code></td>
-<td>Identificador del cuarto volumen de recursos.</td>
-</tr>
-<tr>
-<td>E</td>
-<td><code>D5</code></td>
-<td>Volumen de recursos del quinto disco.</td>
-</tr>
-<tr>
-<td>E</td>
-<td><code>VOL.5</code></td>
-<td>Identificador del quinto volumen de recursos.</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Disco</th>
+          <th>Fichero</th>
+          <th>Descripción</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>A</td>
+          <td><code>AUTO/CRUISE.PRG</code></td>
+          <td>Ejecutable del juego, en el directorio <code>AUTO</code> para que arranque desde disco.</td>
+      </tr>
+      <tr>
+          <td>A</td>
+          <td><code>D1</code></td>
+          <td>Volumen de recursos del primer disco.</td>
+      </tr>
+      <tr>
+          <td>A</td>
+          <td><code>INSTALL.PRG</code></td>
+          <td>Ejecutable para configurar el audio del juego.</td>
+      </tr>
+      <tr>
+          <td>A</td>
+          <td><code>MIDI.OFF</code></td>
+          <td>Fichero de configuración de sonido.</td>
+      </tr>
+      <tr>
+          <td>A</td>
+          <td><code>READ.ME</code></td>
+          <td>Fichero <em>README</em> con instrucciones de instalación.</td>
+      </tr>
+      <tr>
+          <td>A</td>
+          <td><code>SYSTEM.FNT</code></td>
+          <td>Fichero de la <a href="https://en.wikipedia.org/wiki/Computer_font#Bitmap_fonts">raster font</a> del juego.</td>
+      </tr>
+      <tr>
+          <td>A</td>
+          <td><code>VOL.1</code></td>
+          <td>Fichero identificador del primer volumen de recursos.</td>
+      </tr>
+      <tr>
+          <td>A</td>
+          <td><code>VOL.CNF</code></td>
+          <td>Volumen <em>maestro</em> de recursos. Tiene un índice general del contenido de todos los volúmenes.</td>
+      </tr>
+      <tr>
+          <td>B</td>
+          <td><code>D2</code></td>
+          <td>Volumen de recursos del segundo disco.</td>
+      </tr>
+      <tr>
+          <td>B</td>
+          <td><code>VOL.2</code></td>
+          <td>Identificador del segundo volumen de recursos.</td>
+      </tr>
+      <tr>
+          <td>C</td>
+          <td><code>D3</code></td>
+          <td>Volumen de recursos del tercer disco.</td>
+      </tr>
+      <tr>
+          <td>C</td>
+          <td><code>VOL.3</code></td>
+          <td>Identificador del tercer volumen de recursos.</td>
+      </tr>
+      <tr>
+          <td>D</td>
+          <td><code>D4</code></td>
+          <td>Volumen de recursos del cuarto disco.</td>
+      </tr>
+      <tr>
+          <td>D</td>
+          <td><code>VOL.4</code></td>
+          <td>Identificador del cuarto volumen de recursos.</td>
+      </tr>
+      <tr>
+          <td>E</td>
+          <td><code>D5</code></td>
+          <td>Volumen de recursos del quinto disco.</td>
+      </tr>
+      <tr>
+          <td>E</td>
+          <td><code>VOL.5</code></td>
+          <td>Identificador del quinto volumen de recursos.</td>
+      </tr>
+  </tbody>
 </table>
 <p>Tal como se indica en el <code>READ.ME</code>, el juego podía instalarse en disco sin problemas, reduciendo un poco los tiempos de carga y evitando la molestia de tener que andar cambiando de disco cada dos por tres.</p>
 <p>Viendo los ficheros, al final lo que se le ocurre a uno es tan <em>&ldquo;simple&rdquo;</em> como extraer los ficheros de recursos de una versión española, buscar los textos en español y meterlos de vuelta en los volúmenes de recursos de cualquier versión para Atari ST.</p>
@@ -249,7 +249,7 @@ _88o,,od8P"888,_ _,88P888    Y88"888"88o,  ""
 <p>Parece ser que en los recursos del juego no se define un mapa de carácteres concreto. Debido a las características del motor, el mapa de carácteres que se usará, independientemente de si existe el caracter en <code>SYSTEM.FNT</code>, es el definido en el ejecutable del juego, en este caso el fichero <code>CRUISE.PRG</code>.</p>
 <p>Dicho esto, puesto que tiene hardcodeada la tabla de carácteres correspondiente al idioma de la versión del juego, si queremos ver los textos en español en todo su esplendor no sólo hay que reconstruir los volúmenes de recursos. Tampoco es suficiente con copiar el fichero de la fuente bitmap de otra versión en español (<code>SYSTEM.FNT</code>). También hay que parchear el ejecutable del juego. Así que nada, manos a la obra!</p>
 <p>Para que reconozca los nuevos carácteres, simpemente hay que parchear unos bytes en la parte donde está definida la tabla de carácteres. Aquí los cambios, donde <code>CRUISESP.PRG</code> es la versión parcheada y <code>CRUISEO.PRG</code> la original:</p>
-<pre><code>$ radiff2 CRUISESP.PRG CRUISEO.PRG
+<pre tabindex="0"><code>$ radiff2 CRUISESP.PRG CRUISEO.PRG
 0x0001ae3e 00720080 =&gt; ffffffff 0x0001ae3e
 0x0001ae7c 007f0079007b008100820083 =&gt; ffffffffffffffffffffffff 0x0001ae7c
 0x0001ae8c 007d =&gt; ffff 0x0001ae8c
@@ -321,7 +321,7 @@ _88o,,od8P"888,_ _,88P888    Y88"888"88o,  ""
 
 
 	<footer>
-	<p>&copy; 2020 <a href="http://www.b0nk.com/">Bruno Heras</a> <b>|</b> <i>"Look behind you, a three-headed monkey!"</i>
+	<p>&copy; 2025 <a href="http://www.b0nk.com/">Bruno Heras</a> <b>|</b> <i>"Look behind you, a three-headed monkey!"</i>
 	</p>
 </footer>
 

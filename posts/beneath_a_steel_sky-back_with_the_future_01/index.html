@@ -495,13 +495,13 @@ With apologies to the CD32 SteelSky file.
 <p><code>file_id = 60600 + (language_index * no_of_text_sections) + section_index</code></p></blockquote>
 <p>Los <code>language_index</code> aparecen en <code>Include.asm:76</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ASM" data-lang="ASM"><span style="display:flex;"><span><span style="color:#50fa7b">english_code</span>	equ     <span style="color:#bd93f9">0</span>
-</span></span><span style="display:flex;"><span><span style="color:#50fa7b">german_code</span>	equ     <span style="color:#bd93f9">1</span>
-</span></span><span style="display:flex;"><span><span style="color:#50fa7b">french_code</span>	equ     <span style="color:#bd93f9">2</span>
-</span></span><span style="display:flex;"><span><span style="color:#50fa7b">usa_code</span>	equ     <span style="color:#bd93f9">3</span>
-</span></span><span style="display:flex;"><span><span style="color:#50fa7b">swe_code</span>	equ     <span style="color:#bd93f9">4</span>
-</span></span><span style="display:flex;"><span><span style="color:#50fa7b">iti_code</span>	equ     <span style="color:#bd93f9">5</span>
-</span></span><span style="display:flex;"><span><span style="color:#50fa7b">por_code</span>	equ     <span style="color:#bd93f9">6</span>
-</span></span><span style="display:flex;"><span><span style="color:#50fa7b">spa_code</span>	equ     <span style="color:#bd93f9">7</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">german_code</span>     equ     <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">french_code</span>     equ     <span style="color:#bd93f9">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">usa_code</span>	    equ     <span style="color:#bd93f9">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">swe_code</span>	    equ     <span style="color:#bd93f9">4</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">iti_code</span>	    equ     <span style="color:#bd93f9">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">por_code</span>	    equ     <span style="color:#bd93f9">6</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">spa_code</span>	    equ     <span style="color:#bd93f9">7</span>
 </span></span></code></pre></div><p>Por lo que si queremos obtener el primer fichero de textos en español <code>60656</code>, sería así:</p>
 <ul>
 <li><code>language_index</code> (ES) = 7</li>

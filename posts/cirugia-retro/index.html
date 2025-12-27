@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<style type=text/css>body{font-family:monospace;}</style>
+	
 	<title>Cirugía Retro</title>
 	
 	
-	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="preload" href="fonts/iosevka-aile-bold.woff2" as="font" crossorigin="anonymous">
+	<link rel="preload" href="fonts/iosevka-aile-normal.woff2" as="font" crossorigin="anonymous">
+	<link rel="preload" href="fonts/iosevka-aile-normalitalic.woff2" as="font" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
 	
 </head>
 <body>
 	<header>
+	<a href="/">
 	<pre id="header">
 		
 :::::::.      ...   :::.    :::. :::  .    .:
@@ -21,10 +26,10 @@
 $$""""Y$$$$$,     $$$$$$ "Y$c$$_$$$$,     $$
 _88o,,od8P"888,_ _,88P888    Y88"888"88o,  ""
 ""YUMMMP"   "YMMMMMP" MMM     YM MMM "MMP" MM
-	</pre>
+	</pre></a>
 	<div style="float: right;"></div><br>
 	<nav id="menu">
-			<a href="/"><b>$HOME</b></a> | <a href="mailto:srm AT b0nk DOT com">cONTACTO</a>
+			<a href="/"><b>$HOME</b></a> | <a href="mailto:srm AT b0nk DOT com">CONTACTO</a> | <a href="https://paypal.me/b0nkafe" target="_blank">INVÍTAME A UN CAFÉ</a>
 			
 </header>
 
@@ -36,6 +41,8 @@ _88o,,od8P"888,_ _,88P888    Y88"888"88o,  ""
 				
 					| tags: 
 				   <a href="/tags/atari-st">Atari ST</a>
+				   
+				   <a href="/tags/traducci%C3%B3n">traducción</a>
 				   
         	       
 			<div id="post">
@@ -195,17 +202,27 @@ _88o,,od8P"888,_ _,88P888    Y88"888"88o,  ""
 <h2 id="volúmenes-de-recursos">Volúmenes de recursos</h2>
 <p>Como hemos visto, se usan diferentes ficheros para almacenar los recursos del juego. En el caso de <strong><em>Cruise for a Corpse</em></strong> tenemos 5 ficheros de volumen, 5 ficheros identificando dichos volúmenes y un fichero volumen <em>maestro</em> en el que hay un índice donde aparecen todos los ficheros de recursos en los 5 volúmenes.</p>
 <p>La estructura de los ficheros de volumen es la siguiente:</p>
-<p><img src="/cruise/vol_fmt.png" alt="Estructura de fichero de volumen"></p>
+<p>
+  <img src="/cruise/vol_fmt.png" alt="Estructura de fichero de volumen">
+</p>
 <p>En el caso del fichero <code>D1</code>, por ejemplo, la cabecera y la primera entrada serían tal que así:</p>
-<p><img src="/cruise/d1_head.png" alt="Cabecera + primera entrada del fichero"></p>
+<p>
+  <img src="/cruise/d1_head.png" alt="Cabecera &#43; primera entrada del fichero">
+</p>
 <p>Podemos ver que en el fichero <code>D1</code> tiene un total de <code>0xA4</code> (164) entradas en el índice y que cada una de ellas se define en <code>0x1E</code> (30) bytes. Esto es así para cada una de las entradas del índice. La estructura de cada entrada es la siguiente (contando como base address el principio de la entrada):</p>
-<p><img src="/cruise/entry_fmt.png" alt="Formato de cada entrada"></p>
+<p>
+  <img src="/cruise/entry_fmt.png" alt="Formato de cada entrada">
+</p>
 <p>Por lo tanto, cada entrada quedaría así:</p>
-<p><img src="/cruise/entry_fmt2.png" alt="Formato entrada 2"></p>
+<p>
+  <img src="/cruise/entry_fmt2.png" alt="Formato entrada 2">
+</p>
 <p>En esta primera entrada como ejemplo podemos ver el nombre de fichero <code>AUTO00.OVL</code>, el offset (<code>0x0000133C</code>) el tamaño del fichero comprimido (<code>0x00000994</code> - 2452 bytes) y el tamaño del fichero descomprimido (<code>0x00001AC3</code> - 6851 bytes).</p>
 <p>En cuanto al fichero <code>VOL.CNF</code>, tiene prácticamente la misma estructura que los ficheros de volumen de recursos, pero sólo contiene una entrada por cada fichero de volumen de datos (<code>D1</code>, <code>D2</code>, <code>D3</code>, <code>D4</code>, <code>D5</code>) y un índice general de ficheros sin tamaños ni offsets.</p>
 <p>Al final esta es la parte fácil, ya que rebuscando un poco, uno encuentra que puede usarse el paquete de <code>scummvm-tools</code> para extraer todos los ficheros. Una vez descomprimido todo, vemos que los textos están en los ficheros con extensión <code>.FR</code>:</p>
-<p><img src="/cruise/text_sample.png" alt="Muestra texto"></p>
+<p>
+  <img src="/cruise/text_sample.png" alt="Muestra texto">
+</p>
 <p>Cabe decir que no son ficheros de texto al uso. Comprobando <a href="https://github.com/scummvm/scummvm/tree/master/engines/cruise">el código de ScummVM sobre este motor</a> se puede ver como dichos ficheros se usan en conjunto con otros ficheros (<code>OVL</code> principalmente) sirven para &ldquo;montar&rdquo; el overlay de la escena. Esta capa, usando los ficheros <code>FR</code> y <code>OVL</code> correspondientes a cada escena, sirven para enlazar personajes/objetos/acciones/texto dentro de la escena, por lo que dentro de los ficheros <code>.FR</code> no sólo se encuentran las strings en español para el texto, también existen nombres de variables y objetos usados por el propio motor del juego.</p>
 <p>Inicialmente lo que hice fue pensar en que tan solo encasquetando los ficheros <code>.FR</code> dentro del fichero de volumen y reconstruir el índice era suficiente, pero más adelante veremos que no.</p>
 <p>En las siguientes líneas, me centraré en explicar la fase del reempaquetado de los volúmenes de recursos, así como el resto de cosillas que toqué para hacer que el invento funcione. Puesto que ya había conseguido descomprimir todos los recursos, tan sólo me quedaba la segunda parte y no tenía muy claro que esto fuera a salir adelante.</p>
@@ -240,11 +257,17 @@ _88o,,od8P"888,_ _,88P888    Y88"888"88o,  ""
 <p>El fichero <code>VOL.CNF</code> no es necesario recrearlo debido a que no contiene información individual sobre los ficheros, por lo que no es necesario reflejar ninguno de los cambios realizados.</p>
 <p>Una vez terminado el proceso, tan solo queda montar las imágenes de floppy nuevas. Para ello lo que hago es crear una imagen vacía desde <a href="http://hatari.tuxfamily.org/">Hatari</a> replicando los discos originales.</p>
 <p>Una vez tengo las imágenes vacías, las edito con las <a href="http://hxc2001.free.fr/floppy_drive_emulator/index.html#download">herramientas de HxC</a> y añado los ficheros:</p>
-<p><img src="/cruise/hxc_tools.PNG" alt="HxC Tools"></p>
+<p>
+  <img src="/cruise/hxc_tools.PNG" alt="HxC Tools">
+</p>
 <p>Acto seguido guardo la imagen en formato <code>.ST</code> y abro en el emulador:</p>
-<p><img src="/cruise/emu_01.png" alt="Juego en español"></p>
+<p>
+  <img src="/cruise/emu_01.png" alt="Juego en español">
+</p>
 <p>Bien, esta la imagen de arriba tiene trampa. Sí, os he engañado, esto no se acaba aquí. La captura anterior inicialmente se veía de la siguiente manera:</p>
-<p><img src="/cruise/emu_initial.png" alt="Español inicial"></p>
+<p>
+  <img src="/cruise/emu_initial.png" alt="Español inicial">
+</p>
 <p>Fijaos que falta la <code>ú</code>. Después de investigar sobre el mapa de carácteres utilizado por Atari, probar a meter toda la tabla ASCII extendida en el texto y realizar mil y una pruebas sin resultado positivo, la respuesta estaba, de nuevo, <a href="https://github.com/scummvm/scummvm/blob/master/engines/cruise/staticres.cpp#L59">en el código de ScummVM</a>.</p>
 <p>Parece ser que en los recursos del juego no se define un mapa de carácteres concreto. Debido a las características del motor, el mapa de carácteres que se usará, independientemente de si existe el caracter en <code>SYSTEM.FNT</code>, es el definido en el ejecutable del juego, en este caso el fichero <code>CRUISE.PRG</code>.</p>
 <p>Dicho esto, puesto que tiene hardcodeada la tabla de carácteres correspondiente al idioma de la versión del juego, si queremos ver los textos en español en todo su esplendor no sólo hay que reconstruir los volúmenes de recursos. Tampoco es suficiente con copiar el fichero de la fuente bitmap de otra versión en español (<code>SYSTEM.FNT</code>). También hay que parchear el ejecutable del juego. Así que nada, manos a la obra!</p>
@@ -257,11 +280,17 @@ _88o,,od8P"888,_ _,88P888    Y88"888"88o,  ""
 0x0001af14 00790078 =&gt; ffffffff 0x0001af14
 0x0001af20 007b007a =&gt; ffffffff 0x0001af20
 </code></pre><p>A continuación podéis todos los carácteres soportados en la versión francesa:</p>
-<p><img src="/cruise/test_allchars_orig.png" alt="Francesa"></p>
+<p>
+  <img src="/cruise/test_allchars_orig.png" alt="Francesa">
+</p>
 <p>Y aquí podéis ver la tabla de carácteres del ejecutable parcheado, con sus ñÑ y sus cosicas:</p>
-<p><img src="/cruise/test_allchars.png" alt="Española"></p>
+<p>
+  <img src="/cruise/test_allchars.png" alt="Española">
+</p>
 <p>Todo esto nos vale para la versión original <em>sin cortar</em>, pero&hellip; ¿qué ocurre si tenemos una versión crackeada? Bien, pues podemos parchear de la misma manera. El único problema que tendremos es a la hora de descomprimir y volver a comprimir el ejecutable del juego. Para ello hará falta identificar el packer/cruncher utilizado:</p>
-<p><img src="/cruise/mdepack.jpg" alt="Packed"></p>
+<p>
+  <img src="/cruise/mdepack.jpg" alt="Packed">
+</p>
 <p>El ejecutable descomprimido tenía casi 4 veces el tamaño del ejecutable original (gracias a <strong><em>Tito Teclado</em></strong> por iluminarme el camino con las herramientas que me mandó). Esto es debido a la música, las fuentes para los scrollers, etc&hellip; todo lo que lleva una cracktro, vamos. En este caso tuve problemas a la hora de volver a montar el ejecutable, ya que si bien es cierto que arrancaba la cracktro sin problemas, a la hora de lanzar el juego se quedaba colgado. Seguramente había algún offset hardcodeado para saltar después de la cracktro que me cargué en el reempacado, así que no perdí mucho tiempo y me centré en la versión original sin crackear.</p>
 <h2 id="todo">TODO:</h2>
 <p>Temas pendientes:</p>
@@ -295,7 +324,9 @@ _88o,,od8P"888,_ _,88P888    Y88"888"88o,  ""
 <p>En breve colgaré las 5 imágenes de disco con los textos en español, basadas en la copia original francesa. Estas 5 imágenes llevan los textos en español tal cual se lanzaron en la época. Está sin adulterar: el texto íntegro de la narrativa y sin crackear.</p>
 <p>Adicionalmente, si veo que hay suficiente interés, limpiaré el código y colgaré también las herramientas que he hecho para automatizar todo esto.</p>
 <p>A disfrutar!</p>
-<p><img src="/cruise/patched.png" alt="PATCHED!"></p>
+<p>
+  <img src="/cruise/patched.png" alt="PATCHED!">
+</p>
 <p><em>PS: Por favor, si has llegado hasta aquí y has visto algún error (crítico o no) en todo este galimatías de cosas que han salido de mi cabeza sin orden alguno, ponte en contacto conmigo para que pueda arrglarlo.</em></p>
 			</div>
 		</article>
@@ -307,6 +338,8 @@ _88o,,od8P"888,_ _,88P888    Y88"888"88o,  ""
 		</div>
 		<div>
 			<ul>
+				
+				<li><a href="/posts/beneath_a_steel_sky-back_with_the_future_01/">Beneath a Steel Sky - Back *With* the Future I</a></li>
 				
 				<li><a href="/posts/cruise_for_a_corpse_es/">[REL] Cruise for a Corpse - ES</a></li>
 				
@@ -321,7 +354,7 @@ _88o,,od8P"888,_ _,88P888    Y88"888"88o,  ""
 
 
 	<footer>
-	<p>&copy; 2025 <a href="http://www.b0nk.com/">Bruno Heras</a> <b>|</b> <i>"Look behind you, a three-headed monkey!"</i>
+	<p>&copy; 2025 <a href="http://localhost:1313/">Bruno Heras</a> <b>|</b> <i>"Look behind you, a three-headed monkey!"</i>
 	</p>
 </footer>
 

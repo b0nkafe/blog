@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<title>Beneath a Steel Sky - Back *With* the Future I</title>
+	
+	
+	
+	<link rel="preload" href="fonts/iosevka-aile-bold.woff2" as="font" crossorigin="anonymous">
+	<link rel="preload" href="fonts/iosevka-aile-normal.woff2" as="font" crossorigin="anonymous">
+	<link rel="preload" href="fonts/iosevka-aile-normalitalic.woff2" as="font" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+	
+</head>
+<body>
+	<header>
+	<a href="/">
+	<pre id="header">
+		
+:::::::.      ...   :::.    :::. :::  .    .:
+;;;'';;'  .;;;;;;;.`;;;;,  `;;; ;;; .;;,.;;;
+[[[__[[\.,[[     \[[,[[[[[. '[[ [[[[[/'  '[[
+$$""""Y$$$$$,     $$$$$$ "Y$c$$_$$$$,     $$
+_88o,,od8P"888,_ _,88P888    Y88"888"88o,  ""
+""YUMMMP"   "YMMMMMP" MMM     YM MMM "MMP" MM
+	</pre></a>
+	<div style="float: right;"></div><br>
+	<nav id="menu">
+			<a href="/"><b>$HOME</b></a> | <a href="mailto:srm AT b0nk DOT com">CONTACTO</a> | <a href="https://paypal.me/b0nkafe" target="_blank">INVÍTAME A UN CAFÉ</a>
+			
+</header>
+
+	
+	<main>
+		<article>
+			<h1>Beneath a Steel Sky - Back *With* the Future I</h1>
+			<b><time>22.12.2025 12:48</time></b>
+				
+					| tags: 
+				   <a href="/tags/amiga">Amiga</a>
+				   
+				   <a href="/tags/bass">BASS</a>
+				   
+				   <a href="/tags/translation">translation</a>
+				   
+        	       
+			<div id="post">
+				<p><img src="/bass/bass_title.gif" class="img_empotrada" alt="BASS LOGO"> Esta serie de posts trata sobre cómo las LLMs han ayudado a parchear y traducir al español <a href="https://en.wikipedia.org/wiki/Beneath_a_Steel_Sky">Beneath a Steel Sky</a> (a partir de ahora, <strong>BASS</strong> para los amigos) para Amiga.</p>
+<p>En este post introductorio a la traducción de <strong>BASS</strong> para Amiga al español cubriremos la extracción de recursos del juego para PC y Amiga, así como un análisis de los recursos y cómo el juego trata el texto. Pero antes de empezar, un poco de info sobre el juego.</p>
+<p><strong>BASS</strong> es una aventura gráfica desarrollada por <a href="https://revolution.co.uk/">Revolution Software</a>, publicada por Virgin Interactive en 1994. Inicialmente se publicó en la friolera de 15 discos de 3,5&quot;, aunque más adelante se lanzó en <em>CD</em> incluyendo voces digitalizadas y música. Probablemente sea el último gran juego de este tipo lanzado oficialmente para la plataforma ya que en abril del 94, <a href="https://en.wikipedia.org/wiki/Commodore_International">Commodore se declaró en bancarrota</a>.</p>
+<p>En esta versión para Amiga parece ser que se recortaron varias animaciones para reducir espacio y tiempos de carga y evitar también el constante cambio de disquetes. También se convirtieron gráficos de PC a 256 colores al formato Amiga OCS de 32 colores simultáneos. Debemos tener en cuenta que la versión de Amiga es capaz de ejecutarse sin problemas en un Amiga con 68000 de serie y 1 MB total de RAM.</p>
+<p>Además, por lo que he podido ver (ya lo veremos más adelante), todos los elementos de texto referentes a la interfaz (y algunos más) se reubicaron al propio ejecutable de Amiga.</p>
+<p>Sobre todas estas dificultades y la situación que se debieron encontrar los desarrolladores, me gustaría destacar un mensaje que aparece dentro del binario (fichero ejecutable) del juego, en el offset <code>0xcf</code>, donde bromean sobre las dificultades de portar el juego a Amiga:</p>
+<pre tabindex="0"><code>At the beginning the programmers were happy and did rejoice at their task, for the Amiga before them did shineth and was full of promise. But then they did look closer and did see&#39;th the awful truth; it&#39;s floppies were tiny and sloweth (rareth was its hard drive). And so small was it&#39;s memory that did at first appear large; queereth also was its configuration(s). Then they did findeth another Amiga, and this was slightly different from the first. Then a third, and this was different again. All different, but not really better, for all were psuedo backward compatible. But, eventually, it did come to pass that Steel Sky was implemented on a 1meg os-legal CBM Amiga. And the programmers looked and saw that it was indeed a miracle. But they were not joyous and instead did weep for nobody knew just what had been done.
+</code></pre><p>Como curiosidad y guiño a la gesta de la implementación original, si echamos un ojo al <a href="https://github.com/scummvm/scummvm/blob/master/engines/sky/sky.cpp#L53">código fuente de ScummVM</a>, podremos observar el siguiente comentario:</p>
+<pre tabindex="0"><code>At the beginning the reverse engineers were happy, and did rejoice at their task, for the engine before them did shineth and was full of promise. But then they did look closer and see&#39;th the awful truth; its code was assembly and messy (rareth was its comments). And so large were its includes that did at first seem small; queereth also was its compact(s). Then hey did findeth another version, and this was slightly different from the first. Then a third, and this was different again. All different, but not really better, for all were not really compatible. But, eventually, it did come to pass that Steel Sky was implemented on a modern platform. And the programmers looked and saw that it was indeed a miracle. But they were not joyous and instead did weep for nobody knew just what had been done. Except people who read the source. Hello.
+
+With apologies to the CD32 SteelSky file.
+</code></pre><p>Me parece un puntazo de guiño. Debo decir que el texto original estaba en todos los ejecutables del juego que he visto (inglés, alemán, francés, italiano y sueco), no es exclusivo de la versión de CD32.</p>
+<p>Antes de empezar, os pongo un poco en contexto: hace no mucho, se comentaba por <em>un grupo de preservación de software en español</em> que la aventura gráfica <strong>Beneath a Steel Sky</strong> <a href="https://amiga.abime.net/games/view/beneath-a-steel-sky">nunca tuvo</a> una versión en español para Amiga. Parece ser que la versión española sí se lanzó para PC, pero <em>por lo que sea</em> no quisieron hacer una versión española en Amiga.</p>
+<p>En Amiga lanzaron el juego de manera oficial en los siguientes idiomas:</p>
+<ul>
+<li>Alemán.</li>
+<li>Francés.</li>
+<li>Inglés.</li>
+<li>Italiano.</li>
+<li>Sueco.</li>
+</ul>
+<p>¿Y el español? Pues no. ¿Por qué? <strong>Pues porque no</strong>.</p>
+<p>En este caso se han usado los textos originales de la versión española de PC, pero como veremos más adelante se han creado herramientas para poder realizar una traducción libre con medios modernos.</p>
+<h2 id="extracción-de-recursos">Extracción de recursos</h2>
+<p>La idea principal de este proyecto fue la de utilizar la traducción oficial de PC para poder &ldquo;reinsertarla&rdquo; en los ficheros de recursos de la versión de Amiga. Para ello, necesitamos dos cosas:</p>
+<ol>
+<li>Extraer los recursos de PC.</li>
+<li>Extraer los recursos de Amiga.</li>
+</ol>
+<p>Parece bastante simple pero tal y como veremos a continuación (sobre todo con la versión de Amiga) nos encontraríamos con varios obstáculos que salvar.</p>
+<h2 id="recursos-de-pc">Recursos de PC</h2>
+<p>Bien, tras un análisis inicial de la distribución del juego en PC, tenemos los siguientes ficheros de recursos:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Nombre</th>
+          <th>Propósito</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>SKY.DSK</code></td>
+          <td>Contenedor de todos los recursos / &ldquo;disco virtual&rdquo;. </td>
+      </tr>
+      <tr>
+          <td><code>SKY.DNR</code></td>
+          <td>Índice/directorio. Indica que X recurso está en <em>tal</em> offset.</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="estructura">Estructura</h3>
+<p>Los textos no aparecen en claro, pero con ayuda de <a href="https://es.wikipedia.org/wiki/Modelo_extenso_de_lenguaje">LLMs</a> se pudo ver que existe una tabla que para cada recurso, permite acceder a un mensaje concreto sin decodificar todo lo anterior. Además, el sitio donde apunta es un stream de bits comprimido con <a href="https://es.wikipedia.org/wiki/Codificaci%C3%B3n_Huffman">Huffman</a>. Aquí un esquema:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>SKY.<span style="color:#50fa7b">DNR</span> (índice)
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">|--</span> <span style="color:#8be9fd;font-style:italic">entry</span>: id<span style="color:#ff79c6">=</span><span style="color:#bd93f9">60656</span> <span style="color:#ff79c6">-&gt;</span> offset<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0x123456</span>, size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0x025A</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">|--</span> <span style="color:#8be9fd;font-style:italic">entry</span>: id<span style="color:#ff79c6">=</span><span style="color:#bd93f9">60657</span> <span style="color:#ff79c6">-&gt;</span> offset<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0x126B2A</span>, size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0x018E</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">|</span>
+</span></span><span style="display:flex;"><span>  `<span style="color:#ff79c6">-&gt;</span> SKY.<span style="color:#50fa7b">DSK</span> (blob de datos)
+</span></span><span style="display:flex;"><span>      offset<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0x000000</span> [ .... ]
+</span></span><span style="display:flex;"><span>      offset<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0x123456</span> [<span style="color:#bd93f9">60656</span> data, size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0x025A</span>]
+</span></span><span style="display:flex;"><span>      offset<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0x1236B0</span> [ .... ]
+</span></span><span style="display:flex;"><span>      offset<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0x126B2A</span> [<span style="color:#bd93f9">60657</span> data, size<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0x018E</span>]
+</span></span><span style="display:flex;"><span>      offset<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0x126CB8</span> [ .... ]
+</span></span></code></pre></div><p>Vendría a ser algo como esto:</p>
+<p>
+  <figure>
+    <img src="/bass/recursos_pc.png" alt="Recursos PC">
+    <figcaption>Esquema de índices de los recursos de PC</figcaption>
+  </figure>
+</p>
+<p>Esto significa que para acceder al recurso con id <code>60656</code> dentro de <code>SKY.DSK</code>, debo buscar primero su <em>offset inicial</em>, <em>tamaño</em> y <em>offset final</em> en <code>SKY.DNR</code>, luego ir a dicho <em>offset inicial</em> del fichero <code>SKY.DSK</code> y extraer la cantidad de bytes indicada en el <em>tamaño</em>, hasta <em>offset final</em>. En este caso, como veremos a continuación, esos datos corresponderán a un <em>churro</em> de bits comprimido con Huffman.</p>
+<p>Hay varios tipos de recursos. Normalmente casi todo lo que no es texto (como animaciones, algunos gráficos, sonido, etc&hellip;) viene comprimido con <a href="https://segaretro.org/Rob_Northen_compression">RNC</a>. En nuestro caso nos interesan los textos.</p>
+<p>Por ejemplo, aquí tenéis una lista de algunos ejemplos de los recursos de la versión PC:</p>
+<table>
+  <thead>
+      <tr>
+          <th>ID</th>
+          <th>ID_HEX</th>
+          <th>OFF_HEX</th>
+          <th>SIZE_HEX</th>
+          <th>END_HEX</th>
+          <th>TIPO</th>
+          <th>FLAGS</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>60663</td>
+          <td>0xecf7</td>
+          <td>0x1c4404</td>
+          <td>0x0007f1</td>
+          <td>0x1c4bf5</td>
+          <td>TEXT_HUFF</td>
+          <td>S</td>
+      </tr>
+      <tr>
+          <td>60662</td>
+          <td>0xecf6</td>
+          <td>0x834e40</td>
+          <td>0x000a80</td>
+          <td>0x8358c0</td>
+          <td>TEXT_HUFF</td>
+          <td>S</td>
+      </tr>
+      <tr>
+          <td>60661</td>
+          <td>0xecf5</td>
+          <td>0x6a057d</td>
+          <td>0x0034a4</td>
+          <td>0x6a3a21</td>
+          <td>TEXT_HUFF</td>
+          <td>S</td>
+      </tr>
+      <tr>
+          <td>60660</td>
+          <td>0xecf4</td>
+          <td>0x52d220</td>
+          <td>0x00661a</td>
+          <td>0x53383a</td>
+          <td>TEXT_HUFF</td>
+          <td>S</td>
+      </tr>
+      <tr>
+          <td>60659</td>
+          <td>0xecf3</td>
+          <td>0x3ccec2</td>
+          <td>0x0051de</td>
+          <td>0x3d20a0</td>
+          <td>TEXT_HUFF</td>
+          <td>S</td>
+      </tr>
+      <tr>
+          <td>60658</td>
+          <td>0xecf2</td>
+          <td>0x2d6a0b</td>
+          <td>0x0066e9</td>
+          <td>0x2dd0f4</td>
+          <td>TEXT_HUFF</td>
+          <td>S</td>
+      </tr>
+      <tr>
+          <td>60657</td>
+          <td>0xecf1</td>
+          <td>0x1c1832</td>
+          <td>0x002bd2</td>
+          <td>0x1c4404</td>
+          <td>TEXT_HUFF</td>
+          <td>S</td>
+      </tr>
+      <tr>
+          <td>60656</td>
+          <td>0xecf0</td>
+          <td>0x0334ac</td>
+          <td>0x002d92</td>
+          <td>0x03623e</td>
+          <td>TEXT_HUFF</td>
+          <td>S</td>
+      </tr>
+      <tr>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+      </tr>
+      <tr>
+          <td>60509</td>
+          <td>0xec5d</td>
+          <td>0x85b060</td>
+          <td>0x000157</td>
+          <td>0x85b1b7</td>
+          <td>INIT_SPRITE</td>
+          <td>R</td>
+      </tr>
+      <tr>
+          <td>60508</td>
+          <td>0xec5c</td>
+          <td>0x85af90</td>
+          <td>0x0000c4</td>
+          <td>0x85b054</td>
+          <td>INIT_SPRITE</td>
+          <td>R</td>
+      </tr>
+      <tr>
+          <td>60507</td>
+          <td>0xec5b</td>
+          <td>0x85aeb0</td>
+          <td>0x0000d6</td>
+          <td>0x85af86</td>
+          <td>INIT_SPRITE</td>
+          <td>R</td>
+      </tr>
+      <tr>
+          <td>60506</td>
+          <td>0xec5a</td>
+          <td>0x85ad80</td>
+          <td>0x00012e</td>
+          <td>0x85aeae</td>
+          <td>INIT_SPRITE</td>
+          <td>R</td>
+      </tr>
+      <tr>
+          <td>60505</td>
+          <td>0xec59</td>
+          <td>0x85ac90</td>
+          <td>0x0000ea</td>
+          <td>0x85ad7a</td>
+          <td>INIT_SPRITE</td>
+          <td>R</td>
+      </tr>
+      <tr>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+      </tr>
+      <tr>
+          <td>60400</td>
+          <td>0xebf0</td>
+          <td>0x1968e4</td>
+          <td>0x00bfca</td>
+          <td>0x1a28ae</td>
+          <td>SCRIPT_MOD</td>
+          <td>S</td>
+      </tr>
+      <tr>
+          <td>60302</td>
+          <td>0xeb8e</td>
+          <td>0x805c50</td>
+          <td>0x000ac9</td>
+          <td>0x806719</td>
+          <td>RNC</td>
+          <td>R</td>
+      </tr>
+      <tr>
+          <td>60301</td>
+          <td>0xeb8d</td>
+          <td>0x000e06</td>
+          <td>0x000fbd</td>
+          <td>0x001dc3</td>
+          <td>MOUSE</td>
+          <td>R</td>
+      </tr>
+      <tr>
+          <td>60300</td>
+          <td>0xeb8c</td>
+          <td>0x000c77</td>
+          <td>0x00018f</td>
+          <td>0x000e06</td>
+          <td>MOUSE</td>
+          <td>R</td>
+      </tr>
+      <tr>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+      </tr>
+      <tr>
+          <td>60150</td>
+          <td>0xeaf6</td>
+          <td>0x001dc3</td>
+          <td>0x0017f0</td>
+          <td>0x0035b3</td>
+          <td>FONT</td>
+          <td>S</td>
+      </tr>
+      <tr>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+      </tr>
+      <tr>
+          <td>60110</td>
+          <td>0xeace</td>
+          <td>0x000300</td>
+          <td>0x000977</td>
+          <td>0x000c77</td>
+          <td>RNC</td>
+          <td>HR</td>
+      </tr>
+      <tr>
+          <td>60101</td>
+          <td>0xeac5</td>
+          <td>0x0d6def</td>
+          <td>0x001a2f</td>
+          <td>0x0d881e</td>
+          <td>RNC</td>
+          <td>HR</td>
+      </tr>
+      <tr>
+          <td>60100</td>
+          <td>0xeac4</td>
+          <td>0x0cb5e2</td>
+          <td>0x00b80d</td>
+          <td>0x0d6def</td>
+          <td>RNC</td>
+          <td>HR</td>
+      </tr>
+      <tr>
+          <td>60098</td>
+          <td>0xeac2</td>
+          <td>0x141e0e</td>
+          <td>0x013a61</td>
+          <td>0x15586f</td>
+          <td>RNC</td>
+          <td>HR</td>
+      </tr>
+      <tr>
+          <td>60097</td>
+          <td>0xeac1</td>
+          <td>0x12c665</td>
+          <td>0x0157a9</td>
+          <td>0x141e0e</td>
+          <td>RNC</td>
+          <td>HR</td>
+      </tr>
+      <tr>
+          <td>60096</td>
+          <td>0xeac0</td>
+          <td>0x124796</td>
+          <td>0x007ecf</td>
+          <td>0x12c665</td>
+          <td>RNC</td>
+          <td>HR</td>
+      </tr>
+      <tr>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>FLAGS:</p>
+<ul>
+<li>
+<p>H = include_header (bit 22).</p>
+<p>Indica que al cargar el recurso se incluye el header <code>struct s</code> al principio del buffer descomprimido. Si no está este bit, el loader descarta el header y entrega solo datos.</p>
+</li>
+<li>
+<p>S = skip_decomp (bit 23).</p>
+<p>Indica que no se intenta descomprimir, aunque el recurso esté comprimido. Se usa para recursos que ya vienen sin compresión o que no deben pasar por el unpack.</p>
+</li>
+<li>
+<p>R = compresión RNC.</p>
+</li>
+</ul></blockquote>
+<p>El <code>struct s</code> (generalmente usado para gráficos/sprites) tal cual se define en el código ASM original para PC (<code>Struc.asm</code>), tiene los siguientes campos:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ASM" data-lang="ASM"><span style="display:flex;"><span><span style="color:#6272a4">;------------------------------------------------------------------------------
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">;	The header at the beginning of all data files
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">s</span>	struc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">flag</span>                dw  ? <span style="color:#6272a4">;bit 0: set for colour data, clear for not
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>			              <span style="color:#6272a4">;bit 1: set for compressed, clear for uncompressed
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>			              <span style="color:#6272a4">;bit 2: set for 32 colours, clear for 16 colours
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#50fa7b">s_x</span>                 dw	?
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">s_y</span>                 dw	?
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">s_width</span>	            dw	?
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">s_height</span>            dw	?
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">s_sp_size</span>           dw	?
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">s_tot_size</span>          dw	?
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">s_n_sprites</span>         dw	?
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">s_offset_x</span>          dw	?
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">s_offset_y</span>          dw	?
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">s_compressed_size</span>   dw	?
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">s</span>	ends
+</span></span></code></pre></div><p>Como vemos, si se necesita conservar/acceder a los &ldquo;metadatos&rdquo; del recurso que está extrayendo del fichero de recursos, se mantendrá la cabecera (flag H).</p>
+<h3 id="idiomas">Idiomas</h3>
+<p>En el caso concreto de la traducción, los recursos de texto detectados son los siguientes:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Idioma</th>
+          <th>ID</th>
+          <th>Recursos de texto</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>English</td>
+          <td>0</td>
+          <td>60600-60607</td>
+      </tr>
+      <tr>
+          <td>German</td>
+          <td>1</td>
+          <td>60608-60615</td>
+      </tr>
+      <tr>
+          <td>French</td>
+          <td>2</td>
+          <td>60616-60623</td>
+      </tr>
+      <tr>
+          <td>American</td>
+          <td>3</td>
+          <td>60624-60631</td>
+      </tr>
+      <tr>
+          <td>Swedish</td>
+          <td>4</td>
+          <td>60632-60639</td>
+      </tr>
+      <tr>
+          <td>Italian</td>
+          <td>5</td>
+          <td>60640-60647</td>
+      </tr>
+      <tr>
+          <td>Portug.</td>
+          <td>6</td>
+          <td>60648-60655</td>
+      </tr>
+      <tr>
+          <td><strong>Spanish</strong></td>
+          <td><strong>7</strong></td>
+          <td><strong>60656-60663</strong></td>
+      </tr>
+  </tbody>
+</table>
+<p>Echando un vistazo al código de la versión PC (<code>Text.asm:11-12</code>) vemos que la primera sección de texto es <code>77</code> y que hay <code>8</code> secciones de texto:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ASM" data-lang="ASM"><span style="display:flex;"><span><span style="color:#50fa7b">first_text_sec</span>      equ     <span style="color:#bd93f9">77</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">no_of_text_sections</span> equ     <span style="color:#bd93f9">8</span>
+</span></span></code></pre></div><p>Luego podemos ver que hay un <code>proc</code> llamado <code>get_text</code> (<code>Text.asm:716</code>) que se encarga de cargar y extraer el texto. En esta función, se usa como base <code>60600</code> para luego sumarle el índice del idioma * número de secciones de texto y finalmente la sección.</p>
+<p>Esto nos deja con esta fórmula:</p>
+<blockquote>
+<p><code>file_id = 60600 + (language_index * no_of_text_sections) + section_index</code></p></blockquote>
+<p>Los <code>language_index</code> aparecen en <code>Include.asm:76</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ASM" data-lang="ASM"><span style="display:flex;"><span><span style="color:#50fa7b">english_code</span>	equ     <span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">german_code</span>	equ     <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">french_code</span>	equ     <span style="color:#bd93f9">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">usa_code</span>	equ     <span style="color:#bd93f9">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">swe_code</span>	equ     <span style="color:#bd93f9">4</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">iti_code</span>	equ     <span style="color:#bd93f9">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">por_code</span>	equ     <span style="color:#bd93f9">6</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">spa_code</span>	equ     <span style="color:#bd93f9">7</span>
+</span></span></code></pre></div><p>Por lo que si queremos obtener el primer fichero de textos en español <code>60656</code>, sería así:</p>
+<ul>
+<li><code>language_index</code> (ES) = 7</li>
+<li><code>no_of_text_sections</code> = 8</li>
+<li><code>section_index</code> (primer bloque) = 0</li>
+</ul>
+<p>Que sería tal que así:</p>
+<blockquote>
+<p><code>file_id = 60600 + (7 * 8) + 0 = 60656</code></p></blockquote>
+<p>Una vez localizados los recursos de texto, solo nos falta extraerlos. Para ello, hemos hecho un script que parsea el el fichero índice <code>SKY.DNR</code> y extrae todos los recursos.</p>
+<p>Una vez extraídos, sólo tenemos que localizar el árbol Huffman y decodificar los ficheros de recursos de texto (60656-60663). Veremos el tema de Huffman más adelante.</p>
+<h2 id="recursos-de-amiga">Recursos de Amiga</h2>
+<p>Extraer los ficheros de Amiga no tuvo misterio ya que se pueden encontrar los ficheros directamente en la estructura de directorios tanto de los disquetes como del pack de WHDLoad. El problema es que los ficheros de recursos de texto no son un fichero con una frase detrás de otra. En realidad, cada fichero tiene lo siguiente:</p>
+<ol>
+<li><strong>Dos tablas de índice</strong>. Útil para saltar rápidamente al mensaje que queramos sin decodificar todo el <em>bitstream</em>.</li>
+<li><strong>Un stream de bits</strong> comprimido con Huffman que contiene el texto.</li>
+</ol>
+<p>Cuando el juego quiere leer el mensaje 207, por ejemplo, calcula el offset usando las tablas del fichero y empieza a decodificar bits justo en ese offset.</p>
+<p>Para entenderlo mejor, imagina un libro donde:</p>
+<ul>
+<li>Las frases están comprimidas.</li>
+<li>Hay un índice que dice cuántas frases has de saltar para llegar a la que quieres leer.</li>
+</ul>
+<p>El motor del juego lo que hace es:</p>
+<ol>
+<li>Mirar el índice.</li>
+<li>Saltar al sitio exacto.</li>
+<li>Decodificar la frase hasta el terminador (en este caso se usa <code>0x00</code>).</li>
+</ol>
+<p>Tenemos los siguientes ficheros disponibles en la versión de Amiga:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Ruta</th>
+          <th>Fichero</th>
+          <th>Sección</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>data/disk_0/78</td>
+          <td>78</td>
+          <td>78</td>
+      </tr>
+      <tr>
+          <td>data/disk_2/79</td>
+          <td>79</td>
+          <td>79</td>
+      </tr>
+      <tr>
+          <td>data/disk_8/80</td>
+          <td>80</td>
+          <td>80</td>
+      </tr>
+      <tr>
+          <td>data/disk_12/81</td>
+          <td>81</td>
+          <td>81</td>
+      </tr>
+      <tr>
+          <td>data/disk_5/82</td>
+          <td>82</td>
+          <td>82</td>
+      </tr>
+      <tr>
+          <td>data/disk_4/83</td>
+          <td>83</td>
+          <td>83</td>
+      </tr>
+  </tbody>
+</table>
+<p>Estos ficheros son comunes a todas las versiones de <em>BASS</em> para Amiga. El lector que haya estado atento, se habrá dado cuenta de que faltan las secciones 77 y 84. <em>¡Efectivamente!</em> Estas secciones están embebidas en el fichero ejecutable del juego y no siguen la misma estructura que comentamos a continuación. Esto lo cubrimos más adelante.</p>
+<h3 id="header-de-recurso-de-texto">Header de recurso de texto</h3>
+<p>El <em>header</em> de cada fichero de texto (78..83) de Amiga tiene lo siguiente:</p>
+<pre tabindex="0"><code>0x00..0x15    reservado         Tamaño del fichero en 0x0C
+0x16..0x17    singles_off       (u16 BE, relativo a 0x16)
+0x18..0x19    huff_off          (u16 BE, relativo a 0x16)
+0x1A..        block32[]         (N * u16 BE)
+...           singles[]         (N * 32 bytes)
+...           (padding opcional)
+...           bitstream Huffman
+</code></pre><p>En el caso del fichero 78, queda tal que así:</p>
+<p>
+  <figure>
+    <img src="/bass/amiga_text_78_hex.png" alt="Visualización fichero 78">
+    <figcaption>Ilustración del header de un fichero de recurso de texto de Amiga</figcaption>
+  </figure>
+</p>
+<p>Qué es cada campo?</p>
+<ol>
+<li><code>block32[]</code>: Se trata del índice <em>gordo</em>. Aquí tenemos un índice de varios bloques de 32 mensajes. Cada bloque guarda la <strong>suma total</strong> (en <strong>db</strong>) del bloque. Es decir:</li>
+</ol>
+<ul>
+<li><code>block32[0]</code> = tamaño (db) de los mensajes <strong>0..31</strong></li>
+<li><code>block32[1]</code> = tamaño (db) de los mensajes <strong>32..63</strong></li>
+<li><code>block32[2]</code> = tamaño (db) de los mensajes <strong>64..95</strong></li>
+<li>etc.</li>
+</ul>
+<ol start="2">
+<li><code>singles[]</code>: Se trata del índice <em>fino</em>. Aquí nos dice cuanto ocupa <strong>cada mensaje individual</strong> dentro de un bloque concreto (en <strong>db</strong>).</li>
+</ol>
+<p>Son dos índices diferentes, un índice se encarga de organizar los bloques de 32 en 32, el otro índice lleva qué mensajes están dentro de cada bloque individual. De esta manera, el motor puede saltar rápido a la string que quiere mostrar en ese momento en lugar de tener que decodificar todo el bitstream y luego buscar la string. Ejemplo:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Mensajes:  0..31 | 32..63 | 64..95
+</span></span><span style="display:flex;"><span>block32 :  <span style="color:#ff79c6">[</span>  A  <span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>  B  <span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>  C  <span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Para buscar msg 45:
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">bloque</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">45</span> // <span style="color:#8be9fd;font-style:italic">32</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">dentro</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">45</span> % <span style="color:#8be9fd;font-style:italic">32</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">13</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">start_db</span> <span style="color:#ff79c6">=</span> block32<span style="color:#ff79c6">[</span>0<span style="color:#ff79c6">]</span>               <span style="color:#6272a4"># A</span>
+</span></span><span style="display:flex;"><span>         + sum<span style="color:#ff79c6">(</span>singles<span style="color:#ff79c6">[</span>32..44<span style="color:#ff79c6">])</span>     <span style="color:#6272a4"># 13 mensajes dentro del bloque 1</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">start_bits</span> <span style="color:#ff79c6">=</span> start_db * <span style="color:#bd93f9">2</span>
+</span></span></code></pre></div><h3 id="double-bits-db">Double-bits (db)</h3>
+<p>Los offsets en el header (<code>singles_off</code> y <code>huff_off</code>) <strong>son relativos a 0x16</strong> (después de la cabecera), no al inicio del fichero. Además, el motor usa una unidad custom llamada <code>db</code> o <strong>double-bits</strong>.</p>
+<p>Huffman trabaja bit a bit, por lo que ir saltando por todo el bitstream usando <strong>bytes</strong> en los índices (8 bits) es inviable ya que es demasiado. De igual manera, ir saltando por el índice usando solo un bit sería muy preciso, pero el índice sería gigantesco. Con estas limitaciones, parece que llegaron al término medio donde utilizan <strong>2 bits</strong>.</p>
+<p>En este motor, el <strong>db</strong> (<em>double-bit</em>) no es un tipo estándar de Amiga ni de C, es una <strong>unidad de medida interna</strong> creada <em>ad-hoc</em> para este sistema de texto, ya que el motor <strong>no almacena los offsets de las strings en bytes</strong>, sino en <em>db</em> y hace la conversión a bits justo antes de decodificar el texto.</p>
+<p>Para clarificar un poco lo de antes, <code>block32[]</code> y <code>singles[]</code> son un <strong>array de tamaños</strong>:</p>
+<pre tabindex="0"><code>block32[i] = suma (db) de los 32 mensajes del bloque i
+singles[j] = tamaño (db) del mensaje j dentro del bloque i
+</code></pre><p>Y el motor calcula:</p>
+<pre tabindex="0"><code>start_db   = sum(block32[i]) + sum(singles[j])
+start_bits = start_db * 2
+</code></pre><p><code>start_bits</code> corresponde al <strong>puntero real</strong> dentro del bitstream de Huffman.</p>
+<p>Visualmente quedaría algo así:</p>
+<pre tabindex="0"><code>block32[] (saltos por bloques de 32)
+  [B0] [B1] [B2] [B3] ...
+    |    |    |    |
+    v    v    v    v
+singles[] (saltos por mensaje dentro de bloque)
+  M0 M1 M2 ... M31 | M32 M33 ...
+  |  |  |          |  |
+  v  v  v          v  v
+bitstream Huffman (todo concatenado)
+  [.............bits.............]
+</code></pre><p>Ejemplo simple:</p>
+<p>Si <code>singles[5] = 13</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#bd93f9">13</span> db <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">26</span> bits
+</span></span></code></pre></div><p>Si el offset acumulado es <code>start_db = 120</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>start_bits <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">120</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">2</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">240</span> bits
+</span></span></code></pre></div><p>El motor empieza a decodificar Huffman <strong>exactamente</strong> en ese bit.</p>
+<h3 id="inventario-de-mensajes-por-fichero">Inventario de mensajes por fichero</h3>
+<p>Además, con la información de la cabecera se puede saber exactamente cuantos mensajes hay en cada fichero. Por ejemplo, en el fichero <code>disk_0/78</code> tenemos lo siguiente:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ASM" data-lang="ASM"><span style="display:flex;"><span><span style="color:#6272a4">;----------------------------------------
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">; Cálculo del número de bloques y mensajes
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">; del fichero data/disk_0/78
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">singles_off</span> = <span style="color:#bd93f9">0x22</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">huff_off</span>    = <span style="color:#bd93f9">0x207</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">base</span>        = <span style="color:#bd93f9">0x16</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">singles_abs</span> = <span style="color:#bd93f9">0x38</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">huff_abs</span>    = <span style="color:#bd93f9">0x21D</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">block32_count</span> = (singles_off - <span style="color:#bd93f9">4</span>) / <span style="color:#bd93f9">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">num_msgs</span>      = block32_count * <span style="color:#bd93f9">32</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>--
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(0<span style="color:#50fa7b">x22</span> - <span style="color:#bd93f9">4</span>) / <span style="color:#bd93f9">2</span> = <span style="color:#bd93f9">15</span> entradas/bloques
+</span></span><span style="display:flex;"><span>15 * 32 = 480 <span style="color:#50fa7b">mensajes</span>
+</span></span></code></pre></div><p>Recordemos que los offsets son relativos a <code>0x16</code>. Para calcular el número de bloques debemos tener en cuenta que entre <code>0x16</code> y el inicio de <code>block32[]</code> hay 4 bytes que corresponden a <code>singles_off</code> y <code> huff_off</code>, que son los offsets de donde empieza el índice de <code>singles[]</code> y el bitstream Huffman respectivamente. Además, cada entrada de <code>block32[]</code> son 2 bytes, de ahí sacamos <code>block32_count = (singles_off - 4) / 2</code>.</p>
+<p>Igual con esta imagen se entiende mejor:</p>
+<p>
+  <figure>
+    <img src="/bass/block32_singles_78_msg207.png" alt="Indices block32 y singles">
+    <figcaption>Esquema de índices block32 y singles</figcaption>
+  </figure>
+</p>
+<p>### Mapa de recursos PC - AMIGA</p>
+<p>Antes de pasar a la siguiente sección dedicada a <a href="https://es.wikipedia.org/wiki/Codificaci%C3%B3n_Huffman">Huffman</a>, os dejo una tabla con el mapeo de recursos de texto entre PC y Amiga:</p>
+<table>
+  <thead>
+      <tr>
+          <th>id recurso PC (ES)</th>
+          <th>id seccion PC</th>
+          <th>tipo recurso Amiga</th>
+          <th>id recurso Amiga</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>60600+(7*8)+0 = 60656</td>
+          <td>77 (0x4D)</td>
+          <td>embebido (exe) Seccion A</td>
+          <td>0x4D (A)</td>
+      </tr>
+      <tr>
+          <td>60600+(7*8)+1 = 60657</td>
+          <td>78 (0x4E)</td>
+          <td>fichero en disco</td>
+          <td>78</td>
+      </tr>
+      <tr>
+          <td>60600+(7*8)+2 = 60658</td>
+          <td>79 (0x4F)</td>
+          <td>fichero en disco</td>
+          <td>79</td>
+      </tr>
+      <tr>
+          <td>60600+(7*8)+3 = 60659</td>
+          <td>80 (0x50)</td>
+          <td>fichero en disco</td>
+          <td>80</td>
+      </tr>
+      <tr>
+          <td>60600+(7*8)+4 = 60660</td>
+          <td>81 (0x51)</td>
+          <td>fichero en disco</td>
+          <td>81</td>
+      </tr>
+      <tr>
+          <td>60600+(7*8)+5 = 60661</td>
+          <td>82 (0x52)</td>
+          <td>fichero en disco</td>
+          <td>82</td>
+      </tr>
+      <tr>
+          <td>60600+(7*8)+6 = 60662</td>
+          <td>83 (0x53)</td>
+          <td>fichero en disco</td>
+          <td>83</td>
+      </tr>
+      <tr>
+          <td>60600+(7*8)+7 = 60663</td>
+          <td>84 (0x54)</td>
+          <td>embebido (exe) Seccion B</td>
+          <td>0x54 (B)</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>Notas:</p>
+<ul>
+<li>En Amiga solo 78..83 están en disco.</li>
+<li>77 y 84 están embebidas en el exe (A y B).</li>
+<li>El orden coincide con PC (77..84), solo cambia dónde se almacenan.</li>
+</ul></blockquote>
+<h2 id="huffman">Huffman</h2>
+<p>Viendo el código fuente de ScummVM para el motor <code>sky</code>, ya vimos que se usaba texto comprimido con Huffman para la versión PC. Tenéis los árboles Huffman ya montados <a href="https://github.com/scummvm/scummvm/blob/master/engines/sky/hufftext.cpp">aquí</a>.</p>
+<p>Visto lo visto, no era de extrañar que en la versión de Amiga se hiciera lo mismo.</p>
+<h3 id="lo-cualo">Lo cualo?</h3>
+<p>Vayamos por partes. Ya hemos visto anteriormente que el juego guarda el texto en una <strong>tira de bits comprimida</strong>, por bloques, en diferentes ficheros. Para convertir esos bits en letras, el juego sigue lo que vendría a ser una especie de <strong>árbol de decisiones</strong>:</p>
+<ul>
+<li>Lee un bit:
+<ul>
+<li>Si es <code>0</code>, va a la izquierda del árbol.</li>
+<li>Si es <code>1</code>, va a la derecha del árbol.</li>
+</ul>
+</li>
+<li>Repite hasta llegar a una <strong>hoja</strong> (en este caso un <em>byte</em>, por ejemplo <code>0x65</code>, que el motor traduce al caracter <code>'e'</code>).</li>
+</ul>
+<p>Podríamos decir que Huffman es una manera de comprimir texto usando códigos de longitud variable. Esto es:</p>
+<ul>
+<li>Las letras frecuentes tienen códigos <strong>cortos</strong> (menos bits). Están más cerca del inicio del árbol ya que se usan frecuentemente y es más fácil acceder a ellas.</li>
+<li>Las letras raras o poco utilizadas tienen códigos <strong>largos</strong> (más bits). Dado que se usan poco, están más lejos del inicio del árbol y, en consecuencia, el camino hacia ellas es más largo.</li>
+</ul>
+<h3 id="árbol-de-ejemplo-ejecutable-steelsky-de">Árbol de ejemplo (ejecutable SteelSky DE)</h3>
+<p>Un ejemplo, sacado del ejecutable de la versión Alemana de Amiga sería algo como esto:</p>
+<pre tabindex="0"><code>        [b0] - Ejemplo del árbol Huffman versión Amiga (DE)
+        ├─0
+        │  ├─0
+        │  │  ├─0
+        │  │  │  └─1 → 0x65 &#39;e&#39;  bits: 0001
+        │  │  └─1
+        │  │     ├─0 → 0x61 &#39;a&#39;  bits: 0010
+        │  │     └─1 → 0x6E &#39;n&#39;  bits: 0011
+        │  └─1
+        │     ├─0
+        │     │  ├─0
+        │     │  │  ├─0 → 0x69 &#39;i&#39;  bits: 01000
+        │     │  │  └─1 → 0x74 &#39;t&#39;  bits: 01001
+        │     │  └─1 → 0x73 &#39;s&#39;  bits: 0101
+        │     └─1
+        │        ├─0
+        │        │  ├─0 → 0x72 &#39;r&#39;  bits: 01100
+        │        │  └─1 → 0x2E &#39;.&#39;  bits: 01101
+        │        └─1 → 0x6F &#39;o&#39;  bits: 0111
+        └─1
+            ├─0
+            │  ├─0
+            │  │  ├─0
+            │  │  │  ├─0
+            │  │  │  │  ├─0 → 0x00 &#39;&lt;NUL&gt;&#39;  bits: 100000
+            │  │  │  │  └─1 → 0x45 &#39;E&#39;      bits: 100001
+            │  │  │  └─1 → 0x75 &#39;u&#39;         bits: 10001
+            │  │  └─1
+            │  │     ├─0
+            │  │     │  ├─0 → 0x6D &#39;m&#39;      bits: 100100
+            │  │     │  └─1 → 0x6C &#39;l&#39;      bits: 100101
+            │  │     └─1 → 0x49 &#39;I&#39;         bits: 10011
+            │  └─1
+            │     ├─0
+            │     │  ├─0
+            │     │  │  ├─0 → 0x64 &#39;d&#39;      bits: 101000
+            │     │  │  └─1 → 0x52 &#39;R&#39;      bits: 101001
+            │     │  └─1
+            │     │     ├─0 → 0x41 &#39;A&#39;      bits: 101010
+            │     │     └─1 → 0x4E &#39;N&#39;      bits: 101011
+            │     └─1
+            │        ├─0
+            │        │  ├─0 → 0x54 &#39;T&#39;      bits: 101100
+            │        │  └─1 → 0x68 &#39;h&#39;      bits: 101101
+            │        └─1 → 0x53 &#39;S&#39;         bits: 10111
+            ...
+</code></pre><h3 id="dónde-está-el-árbol-amiga">Dónde está el árbol? (AMIGA)</h3>
+<p>En el caso de Amiga, el árbol no está guardado como datos en ningún fichero, sino como <strong>código 68000</strong>. Aquí os dejo un snippet:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ASM" data-lang="ASM"><span style="display:flex;"><span><span style="color:#6272a4">; Root (DE): 0x00BDCC
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">; Bitreader: 0x00C348
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">; Offset de inicio de hunk de código: 0x2C (44 bytes)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">; Offset de fichero del root: 0x00BDCC + 0x2C = 0x00BDF8
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">; Root del árbol Huffman (dir. lógica 0x00BDCC, file_off 0x00BDF8)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">; Cada bsr.w lee 1 bit; bne.w = bit=1 (rama derecha), si no = bit=0 (izquierda)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>  0<span style="color:#8be9fd;font-style:italic">x00BDCC:</span> <span style="color:#50fa7b">bsr.w</span>  $C348        <span style="color:#6272a4">; leer bit #1
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BDD0:</span> <span style="color:#50fa7b">bne.w</span>  $BDDA        <span style="color:#6272a4">; bit=1 -&gt; hoja &#39;n&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BDD4:</span> <span style="color:#50fa7b">move.w</span> <span style="color:#6272a4">#$61, d0     ; hoja: 0x61 = &#39;a&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BDD8:</span> <span style="color:#50fa7b">rts</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  0<span style="color:#8be9fd;font-style:italic">x00BDDA:</span> <span style="color:#50fa7b">move.w</span> <span style="color:#6272a4">#$6E, d0     ; hoja: 0x6E = &#39;n&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BDDE:</span> <span style="color:#50fa7b">rts</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  0<span style="color:#8be9fd;font-style:italic">x00BDE0:</span> <span style="color:#50fa7b">bsr.w</span>  $C348        <span style="color:#6272a4">; leer bit #2 (si venimos por otra rama)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BDE4:</span> <span style="color:#50fa7b">bne.w</span>  $BE0A        <span style="color:#6272a4">; bit=1 -&gt; subárbol (más profundo)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BDE8:</span> <span style="color:#50fa7b">bsr.w</span>  $C348        <span style="color:#6272a4">; leer bit #3
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BDEC:</span> <span style="color:#50fa7b">bne.w</span>  $BE04        <span style="color:#6272a4">; bit=1 -&gt; hoja &#39;s&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BDF0:</span> <span style="color:#50fa7b">bsr.w</span>  $C348        <span style="color:#6272a4">; bit=0 -&gt; otro nivel
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BDF4:</span> <span style="color:#50fa7b">bne.w</span>  $BDFE        <span style="color:#6272a4">; bit=1 -&gt; hoja &#39;t&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BDF8:</span> <span style="color:#50fa7b">move.w</span> <span style="color:#6272a4">#$69, d0     ; hoja: 0x69 = &#39;i&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BDFC:</span> <span style="color:#50fa7b">rts</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  0<span style="color:#8be9fd;font-style:italic">x00BDFE:</span> <span style="color:#50fa7b">move.w</span> <span style="color:#6272a4">#$74, d0     ; hoja: 0x74 = &#39;t&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BE02:</span> <span style="color:#50fa7b">rts</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  0<span style="color:#8be9fd;font-style:italic">x00BE04:</span> <span style="color:#50fa7b">move.w</span> <span style="color:#6272a4">#$73, d0     ; hoja: 0x73 = &#39;s&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BE08:</span> <span style="color:#50fa7b">rts</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  0<span style="color:#8be9fd;font-style:italic">x00BE0A:</span> <span style="color:#50fa7b">bsr.w</span>  $C348        <span style="color:#6272a4">; leer bit #4
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BE0E:</span> <span style="color:#50fa7b">bne.w</span>  $BE26        <span style="color:#6272a4">; bit=1 -&gt; hoja &#39;o&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BE12:</span> <span style="color:#50fa7b">bsr.w</span>  $C348        <span style="color:#6272a4">; bit=0 -&gt; otro nivel
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BE16:</span> <span style="color:#50fa7b">bne.w</span>  $BE20        <span style="color:#6272a4">; bit=1 -&gt; hoja &#39;.&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BE1A:</span> <span style="color:#50fa7b">move.w</span> <span style="color:#6272a4">#$72, d0     ; hoja: 0x72 = &#39;r&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BE1E:</span> <span style="color:#50fa7b">rts</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  0<span style="color:#8be9fd;font-style:italic">x00BE20:</span> <span style="color:#50fa7b">move.w</span> <span style="color:#6272a4">#$2E, d0     ; hoja: 0x2E = &#39;.&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BE24:</span> <span style="color:#50fa7b">rts</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  0<span style="color:#8be9fd;font-style:italic">x00BE26:</span> <span style="color:#50fa7b">move.w</span> <span style="color:#6272a4">#$6F, d0     ; hoja: 0x6F = &#39;o&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00BE2A:</span> <span style="color:#50fa7b">rts</span>
+</span></span></code></pre></div><p>Aquí el bitreader:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ASM" data-lang="ASM"><span style="display:flex;"><span>  <span style="color:#6272a4">; Bitreader (dir. lógica 0x00C348, file_off 0x00C374)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  <span style="color:#6272a4">; d1 = índice de bit (0..7), d2 = byte actual, a0 = puntero al bitstream
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>  0<span style="color:#8be9fd;font-style:italic">x00C348:</span> <span style="color:#50fa7b">dbra</span>   d1, $C352   <span style="color:#6272a4">; d1-- ; si d1 &gt;= 0, salta a test
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00C34C:</span> <span style="color:#50fa7b">move.b</span> (a0)+, d2   <span style="color:#6272a4">; d1 &lt; 0 -&gt; leer nuevo byte
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00C34E:</span> <span style="color:#50fa7b">move.w</span> <span style="color:#6272a4">#$7, d1     ; reset d1 = 7
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00C352:</span> <span style="color:#50fa7b">btst.l</span> d1, d2      <span style="color:#6272a4">; test bit d1 del byte
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  0<span style="color:#8be9fd;font-style:italic">x00C354:</span> <span style="color:#50fa7b">rts</span>
+</span></span></code></pre></div><h3 id="dónde-está-el-árbol-pc">Dónde está el árbol? (PC)</h3>
+<p>En el caso del código original de PC es exactamente igual, podéis ver <code>Decoder.asm:1-120</code> (<code>get_tbit</code>), usado por <code>Decodee.asm:10-14</code> (<code>get_text_char</code>), que a su vez es usado por <code>Text.asm:804-833</code> (<code>text_loop</code>). Quedaría algo así:</p>
+<pre tabindex="0"><code>text_loop - Text.asm
+ └─ get_text_char - Decodee.asm
+   └─ call get_tbit - Decoder.asm    ; bit 0
+      ├─ 0 → call get_tbit          ; bit 1
+      │   ├─ 0 → call get_tbit
+      │   │   ├─ 0 → &#39; &#39;   (leaf)
+      │   │   └─ 1 → &#39;e&#39;   (leaf)
+      │   └─ 1 → call get_tbit
+      │       ├─ 0 → &#39;o&#39;
+      │       └─ 1 → &#39;s&#39;
+      └─ 1 → call get_tbit  ; bit 1
+          ├─ 0 → ...
+          └─ 1 → ...
+</code></pre><p>Este árbol es <strong>imprescindible</strong> si queremos obtener el texto en claro ya que <strong>literalmente</strong> nos permite:</p>
+<ul>
+<li><strong>Decodificar</strong> los textos originales en alemán.</li>
+<li><strong>Codificar</strong> los textos en español usando el <em>mismo</em> árbol para que el ejecutable los pueda leer.</li>
+</ul>
+<h3 id="de-huffman-a-pintar-texto">De Huffman a pintar texto</h3>
+<p>Durante mis divagaciones en el canal de Telegram de <strong>SCP</strong>, el señor <strong>DaRaSCo</strong> me comentó que había localizado la fuente del juego dentro del binario usando <a href="https://keithclark.co.uk/apps/ripper/">esta herramienta</a>. Así pues, me puse manos a la obra para intentar extraerla y poder generar un mapa de la fuente para tener claro qué glifos teníamos disponibles.</p>
+<p>La sorpresa fue encontrar dos tipografías. Una más gruesa que la otra. Parece ser que una se usa para mostrar diálogos y texto en el juego/UI. La otra puede ser que se use para los créditos?</p>
+<p>Sea como sea, aquí tenéis los font maps, primero el de la fuente <code>THICK</code>:</p>
+<p>
+  <figure>
+    <img src="/bass/fontmap_DE_thick.png" alt="SteelSky DE THICK Font Map">
+    <figcaption>Fotito de la fuente THICK</figcaption>
+  </figure>
+</p>
+<p>Luego el de la fuente <code>THIN</code>:</p>
+<p>
+  <figure>
+    <img src="/bass/fontmap_DE_thin.png" alt="SteelSky DE THIN Font Map">
+    <figcaption>Fotito de la fuente THIN</figcaption>
+  </figure>
+</p>
+<p>En cyan he puesto el índice dentro del bloque de la fuente y en amarillo el offset del glifo en el ejecutable. A partir de los offsets <code>0x15ED6</code> y <code>0x174E2</code> para la fuente <code>THICK</code> y <code>THIN</code> respectivamente, empiezan a verse los glifos.</p>
+<p>El índice es esencial debido a cómo el motor pinta la fuente. Una vez que Huffman produce <strong>bytes</strong> (hojas), el motor <strong>no</strong> usa ese <strong>byte</strong> y lo pasa a Unicode/ASCII: usa esos bytes como <strong>códigos internos</strong> para ubicar el glifo y pintarlo.</p>
+<p>Por ejemplo, para obtener el índice de la fuente <code>THICK</code> hacemos lo siguiente:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>font_base   <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0x15ED6</span>
+</span></span><span style="display:flex;"><span>width_table <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0x15E28</span>
+</span></span><span style="display:flex;"><span>glyph_index <span style="color:#ff79c6">=</span> byte <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">0x21</span>
+</span></span><span style="display:flex;"><span>bitmap_ptr  <span style="color:#ff79c6">=</span> font_base <span style="color:#ff79c6">+</span> (glyph_index <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">48</span>)   <span style="color:#6272a4"># tamaño 8x12, 2 bitplanes = 48 bytes</span>
+</span></span><span style="display:flex;"><span>width       <span style="color:#ff79c6">=</span> width_table[glyph_index]
+</span></span></code></pre></div><p>Un ejemplo sacado del árbol Huffman original Alemán, para Amiga, con el byte (hoja) <code>0x7E</code> (corresponde a <code>Ä</code>):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>byte <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0x7E</span>
+</span></span><span style="display:flex;"><span>glyph_index <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0x7E</span> <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">0x21</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0x5D</span> (<span style="color:#bd93f9">93</span>)
+</span></span><span style="display:flex;"><span>bitmap_ptr  <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0x15ED6</span> <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">0x5D</span><span style="color:#ff79c6">*</span><span style="color:#bd93f9">48</span> <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0x17046</span>   (THICK)
+</span></span><span style="display:flex;"><span>width       <span style="color:#ff79c6">=</span> width_table[<span style="color:#bd93f9">0x5D</span>]
+</span></span></code></pre></div><p>Si miramos el <em>font map</em> de arriba para la fuente <code>THICK</code>, veremos que si buscamos el offset <code>0x17046</code> (en amarillo en la etiqueta), podemos ver el glifo correspondiente a <code>Ä</code>, cuyo índice es el <code>#93</code>.</p>
+<p><strong>¿Por qué le restamos <code>0x21</code> al byte del Huffman?</strong></p>
+<p>Porque el <strong>primer glifo real</strong> de la fuente corresponde al byte <code>0x21</code> (<code>'!'</code>).<br>
+<code>0x00</code> y <code>0x0A</code> son control (fin/salto), y <code>0x20</code> es espacio (no tiene bitmap, evidentemente). Así que la tabla de glifos empieza en <code>!</code>, quedando así:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>idx <span style="color:#bd93f9">0</span>  <span style="color:#ff79c6">-&gt;</span> byte <span style="color:#bd93f9">0x21</span> (<span style="color:#f1fa8c">&#39;!&#39;</span>)
+</span></span><span style="display:flex;"><span>idx <span style="color:#bd93f9">1</span>  <span style="color:#ff79c6">-&gt;</span> byte <span style="color:#bd93f9">0x22</span> (<span style="color:#f1fa8c">&#39;&#34;&#39;</span>)
+</span></span><span style="display:flex;"><span>idx <span style="color:#bd93f9">2</span>  <span style="color:#ff79c6">-&gt;</span> byte <span style="color:#bd93f9">0x23</span> (<span style="color:#f1fa8c">&#39;ü&#39;</span>)
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><h3 id="tabla-hoja-huffman-byte--bits--idx-glifo--carácter">Tabla Hoja Huffman | Byte | Bits | IDX Glifo | Carácter</h3>
+<p>Aquí os dejo una tabla con todo lo que hemos cubierto entre Huffman + fuente:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: right">Leaf</th>
+          <th style="text-align: left">Byte</th>
+          <th style="text-align: left">Bits</th>
+          <th style="text-align: right">Glifo idx</th>
+          <th style="text-align: left">Glifo (DE)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: right">19</td>
+          <td style="text-align: left"><code>0x00</code></td>
+          <td style="text-align: left"><code>100000</code></td>
+          <td style="text-align: right">-</td>
+          <td style="text-align: left"><code>&lt;NUL&gt;</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">184</td>
+          <td style="text-align: left"><code>0x09</code></td>
+          <td style="text-align: left"><code>11111111111100</code></td>
+          <td style="text-align: right">-</td>
+          <td style="text-align: left"><code>&lt;OUT&gt;</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">60</td>
+          <td style="text-align: left"><code>0x21</code></td>
+          <td style="text-align: left"><code>1101100</code></td>
+          <td style="text-align: right">0</td>
+          <td style="text-align: left"><code>!</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">169</td>
+          <td style="text-align: left"><code>0x22</code></td>
+          <td style="text-align: left"><code>11111111110001</code></td>
+          <td style="text-align: right">1</td>
+          <td style="text-align: left"><code>&quot;</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">123</td>
+          <td style="text-align: left"><code>0x23</code></td>
+          <td style="text-align: left"><code>1111110100</code></td>
+          <td style="text-align: right">2</td>
+          <td style="text-align: left"><code>ü</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">180</td>
+          <td style="text-align: left"><code>0x24</code></td>
+          <td style="text-align: left"><code>11111111111010</code></td>
+          <td style="text-align: right">3</td>
+          <td style="text-align: left"><code>$</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">185</td>
+          <td style="text-align: left"><code>0x25</code></td>
+          <td style="text-align: left"><code>11111111111101</code></td>
+          <td style="text-align: right">4</td>
+          <td style="text-align: left"><code>%</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">158</td>
+          <td style="text-align: left"><code>0x26</code></td>
+          <td style="text-align: left"><code>1111111110001</code></td>
+          <td style="text-align: right">5</td>
+          <td style="text-align: left"><code>&amp;</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">67</td>
+          <td style="text-align: left"><code>0x27</code></td>
+          <td style="text-align: left"><code>11100000</code></td>
+          <td style="text-align: right">6</td>
+          <td style="text-align: left"><code>'</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">132</td>
+          <td style="text-align: left"><code>0x28</code></td>
+          <td style="text-align: left"><code>11111110001</code></td>
+          <td style="text-align: right">7</td>
+          <td style="text-align: left"><code>ß</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">107</td>
+          <td style="text-align: left"><code>0x29</code></td>
+          <td style="text-align: left"><code>111110011</code></td>
+          <td style="text-align: right">8</td>
+          <td style="text-align: left"><code>ö</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">90</td>
+          <td style="text-align: left"><code>0x2A</code></td>
+          <td style="text-align: left"><code>11110011</code></td>
+          <td style="text-align: right">9</td>
+          <td style="text-align: left"><code>ä</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">111</td>
+          <td style="text-align: left"><code>0x2B</code></td>
+          <td style="text-align: left"><code>111110101</code></td>
+          <td style="text-align: right">10</td>
+          <td style="text-align: left"><code>é</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">77</td>
+          <td style="text-align: left"><code>0x2C</code></td>
+          <td style="text-align: left"><code>11101001</code></td>
+          <td style="text-align: right">11</td>
+          <td style="text-align: left"><code>,</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">99</td>
+          <td style="text-align: left"><code>0x2D</code></td>
+          <td style="text-align: left"><code>11110111</code></td>
+          <td style="text-align: right">12</td>
+          <td style="text-align: left"><code>-</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">13</td>
+          <td style="text-align: left"><code>0x2E</code></td>
+          <td style="text-align: left"><code>01101</code></td>
+          <td style="text-align: right">13</td>
+          <td style="text-align: left"><code>.</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">160</td>
+          <td style="text-align: left"><code>0x2F</code></td>
+          <td style="text-align: left"><code>111111111001</code></td>
+          <td style="text-align: right">14</td>
+          <td style="text-align: left"><code>ç</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">138</td>
+          <td style="text-align: left"><code>0x30</code></td>
+          <td style="text-align: left"><code>11111110100</code></td>
+          <td style="text-align: right">15</td>
+          <td style="text-align: left"><code>0</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">139</td>
+          <td style="text-align: left"><code>0x31</code></td>
+          <td style="text-align: left"><code>11111110101</code></td>
+          <td style="text-align: right">16</td>
+          <td style="text-align: left"><code>1</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">135</td>
+          <td style="text-align: left"><code>0x32</code></td>
+          <td style="text-align: left"><code>11111110011</code></td>
+          <td style="text-align: right">17</td>
+          <td style="text-align: left"><code>2</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">142</td>
+          <td style="text-align: left"><code>0x33</code></td>
+          <td style="text-align: left"><code>11111110111</code></td>
+          <td style="text-align: right">18</td>
+          <td style="text-align: left"><code>3</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">152</td>
+          <td style="text-align: left"><code>0x34</code></td>
+          <td style="text-align: left"><code>111111110101</code></td>
+          <td style="text-align: right">19</td>
+          <td style="text-align: left"><code>4</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">162</td>
+          <td style="text-align: left"><code>0x35</code></td>
+          <td style="text-align: left"><code>1111111110100</code></td>
+          <td style="text-align: right">20</td>
+          <td style="text-align: left"><code>5</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">163</td>
+          <td style="text-align: left"><code>0x36</code></td>
+          <td style="text-align: left"><code>1111111110101</code></td>
+          <td style="text-align: right">21</td>
+          <td style="text-align: left"><code>6</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">168</td>
+          <td style="text-align: left"><code>0x37</code></td>
+          <td style="text-align: left"><code>11111111110000</code></td>
+          <td style="text-align: right">22</td>
+          <td style="text-align: left"><code>7</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">154</td>
+          <td style="text-align: left"><code>0x38</code></td>
+          <td style="text-align: left"><code>11111111011</code></td>
+          <td style="text-align: right">23</td>
+          <td style="text-align: left"><code>8</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">151</td>
+          <td style="text-align: left"><code>0x39</code></td>
+          <td style="text-align: left"><code>111111110100</code></td>
+          <td style="text-align: right">24</td>
+          <td style="text-align: left"><code>9</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">126</td>
+          <td style="text-align: left"><code>0x3A</code></td>
+          <td style="text-align: left"><code>1111110110</code></td>
+          <td style="text-align: right">25</td>
+          <td style="text-align: left"><code>:</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">124</td>
+          <td style="text-align: left"><code>0x3C</code></td>
+          <td style="text-align: left"><code>1111110101</code></td>
+          <td style="text-align: right">27</td>
+          <td style="text-align: left"><code>á</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">146</td>
+          <td style="text-align: left"><code>0x3D</code></td>
+          <td style="text-align: left"><code>111111110000</code></td>
+          <td style="text-align: right">28</td>
+          <td style="text-align: left"><code>ê</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">174</td>
+          <td style="text-align: left"><code>0x3E</code></td>
+          <td style="text-align: left"><code>1111111111011</code></td>
+          <td style="text-align: right">29</td>
+          <td style="text-align: left"><code>û</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">76</td>
+          <td style="text-align: left"><code>0x3F</code></td>
+          <td style="text-align: left"><code>11101000</code></td>
+          <td style="text-align: right">30</td>
+          <td style="text-align: left"><code>?</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">177</td>
+          <td style="text-align: left"><code>0x40</code></td>
+          <td style="text-align: left"><code>11111111111000</code></td>
+          <td style="text-align: right">31</td>
+          <td style="text-align: left"><code>ô</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">33</td>
+          <td style="text-align: left"><code>0x41</code></td>
+          <td style="text-align: left"><code>101010</code></td>
+          <td style="text-align: right">32</td>
+          <td style="text-align: left"><code>A</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">82</td>
+          <td style="text-align: left"><code>0x42</code></td>
+          <td style="text-align: left"><code>1110111</code></td>
+          <td style="text-align: right">33</td>
+          <td style="text-align: left"><code>B</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">53</td>
+          <td style="text-align: left"><code>0x43</code></td>
+          <td style="text-align: left"><code>1101000</code></td>
+          <td style="text-align: right">34</td>
+          <td style="text-align: left"><code>C</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">47</td>
+          <td style="text-align: left"><code>0x44</code></td>
+          <td style="text-align: left"><code>110001</code></td>
+          <td style="text-align: right">35</td>
+          <td style="text-align: left"><code>D</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">20</td>
+          <td style="text-align: left"><code>0x45</code></td>
+          <td style="text-align: left"><code>100001</code></td>
+          <td style="text-align: right">36</td>
+          <td style="text-align: left"><code>E</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">87</td>
+          <td style="text-align: left"><code>0x46</code></td>
+          <td style="text-align: left"><code>11110001</code></td>
+          <td style="text-align: right">37</td>
+          <td style="text-align: left"><code>F</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">79</td>
+          <td style="text-align: left"><code>0x47</code></td>
+          <td style="text-align: left"><code>1110101</code></td>
+          <td style="text-align: right">38</td>
+          <td style="text-align: left"><code>G</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">63</td>
+          <td style="text-align: left"><code>0x48</code></td>
+          <td style="text-align: left"><code>110111</code></td>
+          <td style="text-align: right">39</td>
+          <td style="text-align: left"><code>H</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">27</td>
+          <td style="text-align: left"><code>0x49</code></td>
+          <td style="text-align: left"><code>10011</code></td>
+          <td style="text-align: right">40</td>
+          <td style="text-align: left"><code>I</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">94</td>
+          <td style="text-align: left"><code>0x4A</code></td>
+          <td style="text-align: left"><code>111101001</code></td>
+          <td style="text-align: right">41</td>
+          <td style="text-align: left"><code>J</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">89</td>
+          <td style="text-align: left"><code>0x4B</code></td>
+          <td style="text-align: left"><code>11110010</code></td>
+          <td style="text-align: right">42</td>
+          <td style="text-align: left"><code>K</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">50</td>
+          <td style="text-align: left"><code>0x4C</code></td>
+          <td style="text-align: left"><code>110011</code></td>
+          <td style="text-align: right">43</td>
+          <td style="text-align: left"><code>L</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">61</td>
+          <td style="text-align: left"><code>0x4D</code></td>
+          <td style="text-align: left"><code>1101101</code></td>
+          <td style="text-align: right">44</td>
+          <td style="text-align: left"><code>M</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">34</td>
+          <td style="text-align: left"><code>0x4E</code></td>
+          <td style="text-align: left"><code>101011</code></td>
+          <td style="text-align: right">45</td>
+          <td style="text-align: left"><code>N</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">45</td>
+          <td style="text-align: left"><code>0x4F</code></td>
+          <td style="text-align: left"><code>1100001</code></td>
+          <td style="text-align: right">46</td>
+          <td style="text-align: left"><code>O</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">68</td>
+          <td style="text-align: left"><code>0x50</code></td>
+          <td style="text-align: left"><code>11100001</code></td>
+          <td style="text-align: right">47</td>
+          <td style="text-align: left"><code>P</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">117</td>
+          <td style="text-align: left"><code>0x51</code></td>
+          <td style="text-align: left"><code>1111110001</code></td>
+          <td style="text-align: right">48</td>
+          <td style="text-align: left"><code>Q</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">31</td>
+          <td style="text-align: left"><code>0x52</code></td>
+          <td style="text-align: left"><code>101001</code></td>
+          <td style="text-align: right">49</td>
+          <td style="text-align: left"><code>R</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">40</td>
+          <td style="text-align: left"><code>0x53</code></td>
+          <td style="text-align: left"><code>10111</code></td>
+          <td style="text-align: right">50</td>
+          <td style="text-align: left"><code>S</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">37</td>
+          <td style="text-align: left"><code>0x54</code></td>
+          <td style="text-align: left"><code>101100</code></td>
+          <td style="text-align: right">51</td>
+          <td style="text-align: left"><code>T</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">57</td>
+          <td style="text-align: left"><code>0x55</code></td>
+          <td style="text-align: left"><code>1101011</code></td>
+          <td style="text-align: right">52</td>
+          <td style="text-align: left"><code>U</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">86</td>
+          <td style="text-align: left"><code>0x56</code></td>
+          <td style="text-align: left"><code>11110000</code></td>
+          <td style="text-align: right">53</td>
+          <td style="text-align: left"><code>V</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">96</td>
+          <td style="text-align: left"><code>0x57</code></td>
+          <td style="text-align: left"><code>11110101</code></td>
+          <td style="text-align: right">54</td>
+          <td style="text-align: left"><code>W</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">134</td>
+          <td style="text-align: left"><code>0x58</code></td>
+          <td style="text-align: left"><code>11111110010</code></td>
+          <td style="text-align: right">55</td>
+          <td style="text-align: left"><code>X</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">110</td>
+          <td style="text-align: left"><code>0x59</code></td>
+          <td style="text-align: left"><code>111110100</code></td>
+          <td style="text-align: right">56</td>
+          <td style="text-align: left"><code>Y</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">116</td>
+          <td style="text-align: left"><code>0x5A</code></td>
+          <td style="text-align: left"><code>1111110000</code></td>
+          <td style="text-align: right">57</td>
+          <td style="text-align: left"><code>Z</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">181</td>
+          <td style="text-align: left"><code>0x5B</code></td>
+          <td style="text-align: left"><code>11111111111011</code></td>
+          <td style="text-align: right">58</td>
+          <td style="text-align: left"><code>â</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">147</td>
+          <td style="text-align: left"><code>0x5C</code></td>
+          <td style="text-align: left"><code>111111110001</code></td>
+          <td style="text-align: right">59</td>
+          <td style="text-align: left"><code>ú</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">120</td>
+          <td style="text-align: left"><code>0x5D</code></td>
+          <td style="text-align: left"><code>1111110011</code></td>
+          <td style="text-align: right">60</td>
+          <td style="text-align: left"><code>è</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">165</td>
+          <td style="text-align: left"><code>0x5E</code></td>
+          <td style="text-align: left"><code>111111111011</code></td>
+          <td style="text-align: right">61</td>
+          <td style="text-align: left"><code>Ç</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">178</td>
+          <td style="text-align: left"><code>0x5F</code></td>
+          <td style="text-align: left"><code>11111111111001</code></td>
+          <td style="text-align: right">62</td>
+          <td style="text-align: left"><code>î</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">149</td>
+          <td style="text-align: left"><code>0x60</code></td>
+          <td style="text-align: left"><code>11111111001</code></td>
+          <td style="text-align: right">63</td>
+          <td style="text-align: left"><code>`</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">3</td>
+          <td style="text-align: left"><code>0x61</code></td>
+          <td style="text-align: left"><code>0010</code></td>
+          <td style="text-align: right">64</td>
+          <td style="text-align: left"><code>a</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">72</td>
+          <td style="text-align: left"><code>0x62</code></td>
+          <td style="text-align: left"><code>1110010</code></td>
+          <td style="text-align: right">65</td>
+          <td style="text-align: left"><code>b</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">44</td>
+          <td style="text-align: left"><code>0x63</code></td>
+          <td style="text-align: left"><code>1100000</code></td>
+          <td style="text-align: right">66</td>
+          <td style="text-align: left"><code>c</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">30</td>
+          <td style="text-align: left"><code>0x64</code></td>
+          <td style="text-align: left"><code>101000</code></td>
+          <td style="text-align: right">67</td>
+          <td style="text-align: left"><code>d</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">1</td>
+          <td style="text-align: left"><code>0x65</code></td>
+          <td style="text-align: left"><code>0001</code></td>
+          <td style="text-align: right">68</td>
+          <td style="text-align: left"><code>e</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">73</td>
+          <td style="text-align: left"><code>0x66</code></td>
+          <td style="text-align: left"><code>1110011</code></td>
+          <td style="text-align: right">69</td>
+          <td style="text-align: left"><code>f</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">49</td>
+          <td style="text-align: left"><code>0x67</code></td>
+          <td style="text-align: left"><code>110010</code></td>
+          <td style="text-align: right">70</td>
+          <td style="text-align: left"><code>g</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">38</td>
+          <td style="text-align: left"><code>0x68</code></td>
+          <td style="text-align: left"><code>101101</code></td>
+          <td style="text-align: right">71</td>
+          <td style="text-align: left"><code>h</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">7</td>
+          <td style="text-align: left"><code>0x69</code></td>
+          <td style="text-align: left"><code>01000</code></td>
+          <td style="text-align: right">72</td>
+          <td style="text-align: left"><code>i</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">103</td>
+          <td style="text-align: left"><code>0x6A</code></td>
+          <td style="text-align: left"><code>111110000</code></td>
+          <td style="text-align: right">73</td>
+          <td style="text-align: left"><code>j</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">81</td>
+          <td style="text-align: left"><code>0x6B</code></td>
+          <td style="text-align: left"><code>1110110</code></td>
+          <td style="text-align: right">74</td>
+          <td style="text-align: left"><code>k</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">25</td>
+          <td style="text-align: left"><code>0x6C</code></td>
+          <td style="text-align: left"><code>100101</code></td>
+          <td style="text-align: right">75</td>
+          <td style="text-align: left"><code>l</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">24</td>
+          <td style="text-align: left"><code>0x6D</code></td>
+          <td style="text-align: left"><code>100100</code></td>
+          <td style="text-align: right">76</td>
+          <td style="text-align: left"><code>m</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">4</td>
+          <td style="text-align: left"><code>0x6E</code></td>
+          <td style="text-align: left"><code>0011</code></td>
+          <td style="text-align: right">77</td>
+          <td style="text-align: left"><code>n</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">15</td>
+          <td style="text-align: left"><code>0x6F</code></td>
+          <td style="text-align: left"><code>0111</code></td>
+          <td style="text-align: right">78</td>
+          <td style="text-align: left"><code>o</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">54</td>
+          <td style="text-align: left"><code>0x70</code></td>
+          <td style="text-align: left"><code>1101001</code></td>
+          <td style="text-align: right">79</td>
+          <td style="text-align: left"><code>p</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">104</td>
+          <td style="text-align: left"><code>0x71</code></td>
+          <td style="text-align: left"><code>111110001</code></td>
+          <td style="text-align: right">80</td>
+          <td style="text-align: left"><code>q</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">12</td>
+          <td style="text-align: left"><code>0x72</code></td>
+          <td style="text-align: left"><code>01100</code></td>
+          <td style="text-align: right">81</td>
+          <td style="text-align: left"><code>r</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">10</td>
+          <td style="text-align: left"><code>0x73</code></td>
+          <td style="text-align: left"><code>0101</code></td>
+          <td style="text-align: right">82</td>
+          <td style="text-align: left"><code>s</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">8</td>
+          <td style="text-align: left"><code>0x74</code></td>
+          <td style="text-align: left"><code>01001</code></td>
+          <td style="text-align: right">83</td>
+          <td style="text-align: left"><code>t</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">22</td>
+          <td style="text-align: left"><code>0x75</code></td>
+          <td style="text-align: left"><code>10001</code></td>
+          <td style="text-align: right">84</td>
+          <td style="text-align: left"><code>u</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">56</td>
+          <td style="text-align: left"><code>0x76</code></td>
+          <td style="text-align: left"><code>1101010</code></td>
+          <td style="text-align: right">85</td>
+          <td style="text-align: left"><code>v</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">93</td>
+          <td style="text-align: left"><code>0x77</code></td>
+          <td style="text-align: left"><code>111101000</code></td>
+          <td style="text-align: right">86</td>
+          <td style="text-align: left"><code>w</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">131</td>
+          <td style="text-align: left"><code>0x78</code></td>
+          <td style="text-align: left"><code>11111110000</code></td>
+          <td style="text-align: right">87</td>
+          <td style="text-align: left"><code>x</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">70</td>
+          <td style="text-align: left"><code>0x79</code></td>
+          <td style="text-align: left"><code>1110001</code></td>
+          <td style="text-align: right">88</td>
+          <td style="text-align: left"><code>y</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">98</td>
+          <td style="text-align: left"><code>0x7A</code></td>
+          <td style="text-align: left"><code>11110110</code></td>
+          <td style="text-align: right">89</td>
+          <td style="text-align: left"><code>z</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">188</td>
+          <td style="text-align: left"><code>0x7B</code></td>
+          <td style="text-align: left"><code>111111111111110</code></td>
+          <td style="text-align: right">90</td>
+          <td style="text-align: left"><code>ï</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">189</td>
+          <td style="text-align: left"><code>0x7C</code></td>
+          <td style="text-align: left"><code>1111111111111110</code></td>
+          <td style="text-align: right">91</td>
+          <td style="text-align: left"><code>á</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">141</td>
+          <td style="text-align: left"><code>0x7D</code></td>
+          <td style="text-align: left"><code>11111110110</code></td>
+          <td style="text-align: right">92</td>
+          <td style="text-align: left"><code>Ü</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">113</td>
+          <td style="text-align: left"><code>0x7E</code></td>
+          <td style="text-align: left"><code>11111011</code></td>
+          <td style="text-align: right">93</td>
+          <td style="text-align: left"><code>Ä</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">119</td>
+          <td style="text-align: left"><code>0x7F</code></td>
+          <td style="text-align: left"><code>1111110010</code></td>
+          <td style="text-align: right">94</td>
+          <td style="text-align: left"><code>Ö</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">171</td>
+          <td style="text-align: left"><code>0x80</code></td>
+          <td style="text-align: left"><code>1111111111001</code></td>
+          <td style="text-align: right">95</td>
+          <td style="text-align: left"><code>&lt;</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">173</td>
+          <td style="text-align: left"><code>0x81</code></td>
+          <td style="text-align: left"><code>1111111111010</code></td>
+          <td style="text-align: right">96</td>
+          <td style="text-align: left"><code>&gt;</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">187</td>
+          <td style="text-align: left"><code>0x82</code></td>
+          <td style="text-align: left"><code>11111111111110</code></td>
+          <td style="text-align: right">97</td>
+          <td style="text-align: left"><code>/</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">127</td>
+          <td style="text-align: left"><code>0x83</code></td>
+          <td style="text-align: left"><code>1111110111</code></td>
+          <td style="text-align: right">98</td>
+          <td style="text-align: left"><code>Â</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">106</td>
+          <td style="text-align: left"><code>0x85</code></td>
+          <td style="text-align: left"><code>111110010</code></td>
+          <td style="text-align: right">100</td>
+          <td style="text-align: left"><code>â</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">190</td>
+          <td style="text-align: left"><code>0x86</code></td>
+          <td style="text-align: left"><code>1111111111111111</code></td>
+          <td style="text-align: right">101</td>
+          <td style="text-align: left"><code>É</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: right">157</td>
+          <td style="text-align: left"><code>0x87</code></td>
+          <td style="text-align: left"><code>1111111110000</code></td>
+          <td style="text-align: right">102</td>
+          <td style="text-align: left"><code>í</code></td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="cierre">Cierre</h2>
+<p>Bueno, como primera aproximación al curro que nos hemos pegado mis amigos <code>LLM</code> y yo creo que no está nada mal. En este primer post de la serie que se viene, hemos cubierto lo siguiente:</p>
+<ol>
+<li>Introducción a <strong>BASS</strong>.</li>
+<li>Estructura de los ficheros de recursos de PC y extracción.</li>
+<li>Estructura de los ficheros de recursos de Amiga y extracción.</li>
+<li>Árboles de <strong>Huffman</strong>.</li>
+<li><strong>Double-bits</strong>.</li>
+<li>Funcionamiento básico del motor de <strong>BASS</strong> para pintar el texto.</li>
+</ol>
+<p>En el siguiente post terminaremos de ver qué otros recursos nos quedan por extraer que sean útiles para la traducción (o no), cómo parchear el juego (fuente) para mostrar glifos que no tienen correspondencia en el árbol Huffman y como usar la traducción oficial de PC en la versión de Amiga, reempaquetando de nuevo todos los recursos.</p>
+			</div>
+		</article>
+	</main>
+<aside>
+	<div>
+		<div>
+			<h3>LATEST POSTS</h3>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/posts/beneath_a_steel_sky-back_with_the_future_01/">Beneath a Steel Sky - Back *With* the Future I</a></li>
+				
+				<li><a href="/posts/cruise_for_a_corpse_es/">[REL] Cruise for a Corpse - ES</a></li>
+				
+				<li><a href="/posts/cirugia-retro/">Cirugía Retro</a></li>
+				
+				<li><a href="/posts/back2biz/">BACK 2 BIZ</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+
+	<footer>
+	<p>&copy; 2025 <a href="http://localhost:1313/">Bruno Heras</a> <b>|</b> <i>"Look behind you, a three-headed monkey!"</i>
+	</p>
+</footer>
+
+</body>
+</html>

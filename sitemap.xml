@@ -2,27 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://www.b0nk.com/posts/cruise_for_a_corpse_es/</loc>
+    <loc>http://localhost:1313/tags/amiga/</loc>
+    <lastmod>2025-12-22T12:48:48+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/bass/</loc>
+    <lastmod>2025-12-22T12:48:48+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/beneath_a_steel_sky-back_with_the_future_01/</loc>
+    <lastmod>2025-12-22T12:48:48+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2025-12-22T12:48:48+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-12-22T12:48:48+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-12-22T12:48:48+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/translation/</loc>
+    <lastmod>2025-12-22T12:48:48+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/cruise_for_a_corpse_es/</loc>
     <lastmod>2020-07-02T15:48:48+02:00</lastmod>
   </url><url>
-    <loc>http://www.b0nk.com/tags/atari-st/</loc>
+    <loc>http://localhost:1313/tags/atari-st/</loc>
     <lastmod>2020-07-02T15:48:48+02:00</lastmod>
   </url><url>
-    <loc>http://www.b0nk.com/</loc>
+    <loc>http://localhost:1313/tags/traducci%C3%B3n/</loc>
     <lastmod>2020-07-02T15:48:48+02:00</lastmod>
   </url><url>
-    <loc>http://www.b0nk.com/posts/</loc>
-    <lastmod>2020-07-02T15:48:48+02:00</lastmod>
-  </url><url>
-    <loc>http://www.b0nk.com/tags/</loc>
-    <lastmod>2020-07-02T15:48:48+02:00</lastmod>
-  </url><url>
-    <loc>http://www.b0nk.com/posts/cirugia-retro/</loc>
+    <loc>http://localhost:1313/posts/cirugia-retro/</loc>
     <lastmod>2020-06-30T21:01:23+02:00</lastmod>
   </url><url>
-    <loc>http://www.b0nk.com/posts/back2biz/</loc>
+    <loc>http://localhost:1313/posts/back2biz/</loc>
     <lastmod>2020-06-30T20:35:51+02:00</lastmod>
   </url><url>
-    <loc>http://www.b0nk.com/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
   </url>
 </urlset>
